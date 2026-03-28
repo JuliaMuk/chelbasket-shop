@@ -1,0 +1,289 @@
+.filter-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.55);
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s;
+    z-index: 1000000000;
+}
+
+.filter-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.filter-panel {
+    position: fixed;
+    top: 0;
+    left: -30%;
+    width: 30%;
+    height: 100%;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    transition: 0.3s ease;
+    z-index: 99910000000099;
+    overflow-y: auto;
+}
+
+.filter-panel.active {
+    left: 0;
+    box-shadow: 0px 10px 1000px #000000;
+}
+
+.filter-header {
+    font-family: PaluiSPDemo, sans-serif;
+    background: #F39200;
+    padding: 47px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter-header h2 {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 800;
+}
+
+.filter-close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 26px;
+    cursor: pointer;
+}
+
+.filter-content {
+    padding: 20px;
+}
+
+.filter-content h3 {
+    font-family: PaluiSPDemo, sans-serif;
+    margin-top: 35px;
+    margin-bottom: 30px;
+    font-size: 22px;
+    font-weight: 900;
+}
+
+.price-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.price-box input {
+    width: 100px;
+    padding: 8px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+}
+
+.size-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.size-item {
+    font-family: VisbySemibold, sans-serif;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: #F39200;
+    padding: 15px;
+    color: white;
+    transition: all 0.3s;
+}
+
+.size-item:hover {
+    background: #F35D00;
+    /* еще бы по клику состояние цвета менять */
+}
+
+.filter-content label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.apply-btn {
+    font-family: PaluiSPDemo, sans-serif;
+    padding: 15px;
+    width: 100%;
+    background: #F39200;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.apply-btn:hover {
+    background: #F35D00;
+}
+
+.custom-checkbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.custom-checkbox input {
+    display: none;
+}
+
+.custom-checkbox span {
+    position: relative;
+    padding-left: 35px;
+    font-family: VisbySemibold, sans-serif;
+}
+
+.custom-checkbox span::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #999999;
+    background: white;
+    transition: 0.2s;
+}
+
+.custom-checkbox input:checked + span::before {
+    background: #F39200;  
+    border-color: #F39200;
+}
+
+@media (max-width: 1024px) {
+    .filter-panel {
+        width: 35%;
+        left: -35%;
+    }
+
+    .filter-header {
+        padding: 35px;
+    }
+
+    .filter-header h2 {
+        font-size: 24px;
+    }
+
+    .filter-content h3 {
+        font-size: 20px;
+        margin-top: 30px;
+        margin-bottom: 25px;
+    }
+
+    .price-box input {
+        width: 90px;
+        font-size: 15px;
+    }
+
+    .size-item {
+        padding: 12px;
+        font-size: 15px;
+    }
+
+    .filter-content label,
+    .custom-checkbox {
+        font-size: 16px;
+    }
+
+    .apply-btn {
+        font-size: 16px;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .filter-panel {
+        width: 45%;
+        left: -45%;
+    }
+
+    .filter-header {
+        padding: 30px;
+    }
+
+    .filter-header h2 {
+        font-size: 22px;
+    }
+
+    .filter-content h3 {
+        font-size: 18px;
+        margin-top: 25px;
+        margin-bottom: 20px;
+    }
+
+    .price-box input {
+        width: 80px;
+        font-size: 14px;
+    }
+
+    .size-item {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .filter-content label,
+    .custom-checkbox {
+        font-size: 14px;
+    }
+
+    .apply-btn {
+        font-size: 15px;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 320px) {
+    .filter-panel {
+        width: 70%;
+        left: -70%;
+    }
+
+    .filter-header {
+        padding: 20px;
+    }
+
+    .filter-header h2 {
+        font-size: 18px;
+    }
+
+    .filter-content h3 {
+        font-size: 16px;
+        margin-top: 20px;
+        margin-bottom: 15px;
+    }
+
+    .price-box input {
+        width: 60px;
+        font-size: 13px;
+    }
+
+    .size-item {
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    .filter-content label,
+    .custom-checkbox {
+        font-size: 13px;
+    }
+
+    .apply-btn {
+        font-size: 14px;
+        padding: 8px;
+    }
+}

@@ -1,0 +1,181 @@
+@import "fonts.css";
+
+.main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: #FFF;
+    padding-top: 180px;
+    font-family: 'VisbyBold', sans-serif;
+    padding-bottom: 200px;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+}
+
+.headline {
+    font-size: 65px;
+    margin: 80px 0;
+    font-weight: normal;
+    text-transform: uppercase;
+    font-family: "PaluiSPDemo", sans-serif;
+}
+
+.basket {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.products-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 700px;
+}
+
+.product {
+    display: flex;
+    justify-content: space-between;
+    gap: 75px;
+    padding: 20px;
+    background-color: white;
+    color: #111;
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.product-size {
+    text-align: center;
+}
+
+.product-count {
+    display: flex;
+    gap: 4px;
+}
+
+.count-change {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #111;
+    background-color: transparent;
+    color: #111;
+}
+
+#remove-product {
+    position: absolute;
+    margin-top: 90px;
+    margin-left: 650px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.basket-order {
+    width: 460px;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    padding: 11px 20px;
+    gap: 10px;
+    background-color: #FFF;
+    color: #111;
+    box-sizing: border-box;
+}
+
+#place-an-order {
+    height: 55px;
+    background-color: #F39200;
+    color: #FFF;
+    border: none;
+    transition: all 0.2s;
+    font-family: 'PaluiSPDemo', sans-serif;
+}
+#place-an-order:hover {
+    background-color: #F35D00;;
+}
+
+
+@media (max-width: 1024px) {
+    .main-container {
+        width: 720px;
+    }
+
+    .basket {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .basket-order {
+        width: 100%;
+    }
+
+    .headline {
+        width: 100%;
+        font-size: 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        width: 700px;
+    }
+
+    .basket {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .product {
+        box-sizing: border-box;
+    }
+
+    .basket-order {
+        width: 100%;
+    }
+}
+
+@media (max-width: 320px) {
+    .main-container {
+        width: 300px;
+    }
+
+    .basket {
+        width: 100%;
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .product-list {
+        width: 100%;
+    }
+
+    .product {
+        width: 100%;
+        box-sizing: border-box;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .basket-order {
+        width: 100%;
+    }
+
+    .headline {
+        font-size: 20px;
+        margin: 20px 0px;
+    }
+}

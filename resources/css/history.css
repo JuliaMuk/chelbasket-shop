@@ -1,0 +1,163 @@
+@import "fonts.css";
+
+.main {
+    font-family: "VisbyBold", sans-serif;
+    padding-top: 180px;
+}
+
+.width{
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.cards{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    max-width: 1500px;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 20px 0px;
+}
+
+.more-cards{
+    display: flex;
+    justify-content: center;
+}
+
+.title-catalog {
+  font-size: 65px;
+  font-weight: normal;
+  text-transform: uppercase;
+  font-family: "PaluiSPDemo", sans-serif;
+  color: #fbfbfb;
+}
+
+.filters {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.filter-open-btn {
+  width: 360px;
+  height: 70px;
+  font-size: 16px;
+  color: #fbfbfb;
+  background-color: #f39200;
+  text-transform: uppercase;
+  font-family: "PaluiSPDemo", sans-serif;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  cursor: pointer;
+  transition: background-color 0.7s;
+}
+
+.load-more-btn {
+
+  width: 263px;
+  height: 35px;
+  font-size: 16px;
+  color: #fbfbfb;
+  background-color: #191919;
+  text-transform: uppercase;
+  font-family: "PaluiSPDemo", sans-serif;
+  border: 1px solid #fbfbfb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  cursor: pointer;
+  transition: background-color 0.7s;
+  margin-bottom: 100px;
+  transition: all 0.2s;
+}
+
+.load-more-btn:hover{
+    background-color: #f39200;
+    border: none;
+}
+
+.btn-down{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.filter-dropdown {
+    width: 430px;
+    position: relative;
+    font-family: "PaluiSPDemo", sans-serif;
+    text-transform: uppercase;
+    z-index: 1000; 
+}
+
+.filter-btn {
+    background: #f39200;
+    color: white;
+    padding: 29px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+    cursor: pointer;
+    user-select: none;
+}
+
+.filter-btn img {
+    width: 20px;
+    pointer-events: none;
+}
+
+.filter-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    margin: 5px 0 0 0;
+    padding: 0;
+    list-style: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.25s ease-in-out;
+    overflow: hidden;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+}
+
+.filter-menu li {
+    border-bottom: 1px solid #ccc;
+}
+
+.filter-menu li:last-child {
+    border-bottom: none;
+}
+
+.filter-menu a {
+    display: block;
+    padding: 15px 0;
+    text-align: center;
+    font-weight: 700;
+    color: black;
+    text-decoration: none;
+}
+
+.filter-menu li:hover {
+    background: #F35D00;
+}
+
+.filter-dropdown:hover .filter-menu {
+    opacity: 1;
+    visibility: visible;
+}
+.card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }

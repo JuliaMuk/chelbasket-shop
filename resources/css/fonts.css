@@ -1,0 +1,26 @@
+@font-face {
+  font-family: "PaluiSPDemo"; 
+  src: url("../../public/fonts/PaluiSPDemo-Bold.otf") format("opentype"); 
+  font-style: normal; 
+  font-weight: normal; 
+}
+@font-face {
+  font-family: "VisbyBold"; 
+  src: url("../../public/fonts/VisbyBold.otf") format("opentype"); 
+  font-style: normal; 
+  font-weight: normal; 
+}
+
+@font-face {
+  font-family: "VisbyHeavy"; 
+  src: url("../../public/fonts/VisbyHeavy.otf") format("opentype"); 
+  font-style: normal; 
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "VisbySemibold"; 
+  src: url("../../public/fonts/VisbySemibold.otf") format("opentype"); 
+  font-style: normal; 
+  font-weight: normal; 
+}
