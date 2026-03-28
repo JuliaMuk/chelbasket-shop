@@ -8,6 +8,7 @@ use App\Models\Category;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,17 +19,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Category::create(['name' => 'Мячи']);   
-        Category::create(['name' => 'Кофты']);
-        Category::create(['name' => 'Футболки']);
-        Category::create(['name' => 'Майки']);
-        Category::create(['name' => 'Форма']);
-        Category::create(['name' => 'Сувениры']);
+        Category::create(['name' => 'Мячи','slug' => Str::slug('Мячи', '-'),'path_img' => 'img/catalog/баннер7.svg']);   
+        Category::create(['name' => 'Кофты','slug' => Str::slug('Кофты', '-'),'path_img' => 'img/catalog/баннер2.svg']);
+        Category::create(['name' => 'Футболки','slug' => Str::slug('Футболки', '-'),'path_img' => 'img/catalog/баннер3.svg']);
+        Category::create(['name' => 'Майки','slug' => Str::slug('Майки', '-'),'path_img' => 'img/catalog/баннер5.svg']);
+        Category::create(['name' => 'Форма','slug' => Str::slug('Форма', '-'),'path_img' => 'img/catalog/баннер6.svg']);
+        Category::create(['name' => 'Сувениры','slug' => Str::slug('Сувениры', '-'),'path_img' => 'img/catalog/баннер4.svg']);
 
         ///Мячи(1) 
         Product::create([
             'category_id' => 1,
             'name' => 'Мяч баскетбольный',
+            'slug' => Str::slug('Мяч баскетбольный', '-'),
+            'is_new' => true,
             'description' => 'Официальный баскетбольный мяч с логотипом',
             'stock_quantity' => 0,
             'price' => 3990,
@@ -39,6 +42,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 1,
             'name' => 'Мяч мягкий',
+            'slug' => Str::slug('Мяч мягкий', '-'),
             'description' => 'Мягкий антистресс-мяч',
             'stock_quantity' => 10,
             'price' => 1200,
@@ -50,6 +54,8 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 2,
             'name' => 'Кофта',
+            'slug' => Str::slug('Кофта', '-'),
+            'is_new' => true,
             'description' => 'Тёплая кофта с логотипом',
             'stock_quantity' => 10,
             'price' => 3000,
@@ -60,6 +66,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 2,
             'name' => 'Бомбер',
+            'slug' => Str::slug('Бомбер', '-'),
             'description' => 'Стильный бомбер',
             'stock_quantity' => 10,
             'price' => 10990,
@@ -71,6 +78,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 3,
             'name' => 'Футболка "Квадрат"',
+            'slug' => Str::slug('Футболка Квадрат', '-'),
             'description' => 'Футболка с дизайном "Квадрат"',
             'stock_quantity' => 10,
             'price' => 3500,
@@ -81,6 +89,8 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 3,
             'name' => 'Футболка "Logo Chelbasket"',
+            'slug' => Str::slug('Футболка Logo Chelbasket', '-'),
+            'is_new' => true,
             'description' => 'Футболка с логотипом Chelbasket',
             'stock_quantity' => 10,
             'price' => 2990,
@@ -91,6 +101,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 3,
             'name' => 'Футболка "ЧБК"',
+            'slug' => Str::slug('Футболка ЧБК', '-'),
             'description' => 'Футболка с надписью ЧБК',
             'stock_quantity' => 10,
             'price' => 1990,
@@ -101,6 +112,8 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 3,
             'name' => 'Футболка "Championship"',
+            'slug' => Str::slug('Футболка Championship', '-'),
+            'is_new' => true,
             'description' => 'Футболка Championship',
             'stock_quantity' => 10,
             'price' => 2300,
@@ -111,6 +124,8 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 3,
             'name' => 'Футболка "CHILL GUY"',
+            'slug' => Str::slug('Футболка CHILL GUY', '-'), 
+            'is_new' => true,
             'description' => 'Футболка Chill Guy',
             'stock_quantity' => 10,
             'price' => 1990,
@@ -121,6 +136,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 3,
             'name' => 'Поло "ЧБК"',
+            'slug' => Str::slug('Поло ЧБК', '-'),
             'description' => 'Поло с логотипом ЧБК',
             'stock_quantity' => 10,
             'price' => 2500,
@@ -131,6 +147,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 3,
             'name' => 'Футболка с логотипом',
+            'slug' => Str::slug('Футболка с логотипом', '-'),
             'description' => 'Базовая футболка с логотипом',
             'stock_quantity' => 10,
             'price' => 1990,
@@ -141,6 +158,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 3,
             'name' => 'Футболка детская вышивка',
+            'slug' => Str::slug('Футболка детская вышивка', '-'),
             'description' => 'Детская футболка с вышивкой',
             'stock_quantity' => 10,
             'price' => 1990,
@@ -151,6 +169,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 3,
             'name' => 'Футболка детская с логотипом',
+            'slug' => Str::slug('Футболка детская с логотипом', '-'),
             'description' => 'Детская футболка с принтом логотипа',
             'stock_quantity' => 10,
             'price' => 1500,
@@ -161,6 +180,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 3,
             'name' => 'Лонгслив "ВЫШЕ.БЫСТРЕЕ.СИЛЬНЕЕ."',
+            'slug' => Str::slug('Лонгслив ВЫШЕ.БЫСТРЕЕ.СИЛЬНЕЕ.', '-'),
             'description' => 'Лонгслив с мотивационной надписью',
             'stock_quantity' => 10,
             'price' => 3200,
@@ -171,6 +191,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 3,
             'name' => 'Лонгслив "ЧБК"',
+            'slug' => Str::slug('Лонгслив ЧБК', '-'),
             'description' => 'Лонгслив с логотипом ЧБК',
             'stock_quantity' => 10,
             'price' => 2990,
@@ -182,6 +203,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 4,
             'name' => 'Майка тренировочная "ЧБК"',
+            'slug' => Str::slug('Майка тренировочная ЧБК', '-'),
             'description' => 'Тренировочная майка ЧБК',
             'stock_quantity' => 10,
             'price' => 2000,
@@ -192,6 +214,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 4,
             'name' => 'Майка игровая чёрная',
+            'slug' => Str::slug('Майка игровая чёрная', '-'),
             'description' => 'Игровая майка чёрного цвета',
             'stock_quantity' => 10,
             'price' => 2500,
@@ -202,6 +225,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 4,
             'name' => 'Майка игровая белая',
+            'slug' => Str::slug('Майка игровая белая', '-'),
             'description' => 'Игровая майка белого цвета',
             'stock_quantity' => 10,
             'price' => 2500,
@@ -212,6 +236,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 4,
             'name' => 'Майка оранжевая игровая',
+            'slug' => Str::slug('Майка оранжевая игровая', '-'),
             'description' => 'Яркая оранжевая игровая майка',
             'stock_quantity' => 10,
             'price' => 2500,
@@ -222,6 +247,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 4,
             'name' => 'Майка "MEDIA BASKET"',
+            'slug' => Str::slug('Майка MEDIA BASKET', '-'), 
             'description' => 'Майка с надписью MEDIA BASKET',
             'stock_quantity' => 10,
             'price' => 2500,
@@ -232,6 +258,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 4,
             'name' => 'Майка "Славянка-ЧКПЗ"',
+            'slug' => Str::slug('Майка Славянка-ЧКПЗ', '-'),
             'description' => 'Майка Славянка-ЧКПЗ',
             'stock_quantity' => 10,
             'price' => 2000,
@@ -243,6 +270,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 5,
             'name' => 'Костюм спортивный',
+            'slug' => Str::slug('Костюм спортивный', '-'),
             'description' => 'Спортивный костюм (куртка + штаны)',
             'stock_quantity' => 10,
             'price' => 6990,
@@ -253,6 +281,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 5,
             'name' => 'Шорты',
+            'slug' => Str::slug('Шорты', '-'),
             'description' => 'Спортивные шорты',
             'stock_quantity' => 10,
             'price' => 1990,
@@ -263,6 +292,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 5,
             'name' => 'Разминка игровая',
+            'slug' => Str::slug('Разминка игровая', '-'),
             'description' => 'Игровая разминочная форма',
             'stock_quantity' => 10,
             'price' => 3500,
@@ -274,6 +304,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 6,
             'name' => 'Значок железный',
+            'slug' => Str::slug('Значок железный', '-'),
             'description' => 'Металлический значок с логотипом',
             'stock_quantity' => 10,
             'price' => 450,
@@ -284,6 +315,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 6,
             'name' => 'Леброша маленький',
+            'slug' => Str::slug('Леброша маленький', '-'),
             'description' => 'Мини-леброша с логотипом',
             'stock_quantity' => 10,
             'price' => 1500,
@@ -294,6 +326,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 6,
             'name' => 'Леброша средний',
+            'slug' => Str::slug('Леброша средний', '-'),
             'description' => 'Средний размер леброши',
             'stock_quantity' => 10,
             'price' => 2000,
@@ -304,6 +337,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 6,
             'name' => 'Леброша большой',
+            'slug' => Str::slug('Леброша большой', '-'),
             'description' => 'Большая мягкая леброша',
             'stock_quantity' => 10,
             'price' => 1500,
@@ -314,6 +348,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 6,
             'name' => 'Подушка',
+            'slug' => Str::slug('Подушка', '-'),
             'description' => 'Декоративная подушка с принтом',
             'stock_quantity' => 10,
             'price' => 790,
@@ -324,6 +359,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 6,
             'name' => 'Наклейка большая',
+            'slug' => Str::slug('Наклейка большая', '-'),
             'description' => 'Большая виниловая наклейка',
             'stock_quantity' => 10,
             'price' => 150,
@@ -334,6 +370,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 6,
             'name' => 'Стикерпак',
+            'slug' => Str::slug('Стикерпак', '-'),
             'description' => 'Набор стикеров',
             'stock_quantity' => 10,
             'price' => 150,
@@ -344,6 +381,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 6,
             'name' => 'Браслет силиконовый',
+            'slug' => Str::slug('Браслет силиконовый', '-'),
             'description' => 'Силиконовый браслет с логотипом',
             'stock_quantity' => 10,
             'price' => 150,
@@ -354,6 +392,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 6,
             'name' => 'Бейсболка детская',
+            'slug' => Str::slug('Бейсболка детская', '-'),
             'description' => 'Детская бейсболка с логотипом',
             'stock_quantity' => 10,
             'price' => 1500,
@@ -364,6 +403,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 6,
             'name' => 'Кепка',
+            'slug' => Str::slug('Кепка', '-'),
             'description' => 'Классическая кепка с вышивкой',
             'stock_quantity' => 10,
             'price' => 1990,
@@ -374,6 +414,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 6,
             'name' => 'Бутылка для воды',
+            'slug' => Str::slug('Бутылка для воды', '-'),
             'description' => 'Спортивная бутылка с логотипом',
             'stock_quantity' => 10,
             'price' => 690,
@@ -384,6 +425,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 6,
             'name' => 'Ремувка',
+            'slug' => Str::slug('Ремувка', '-'),
             'description' => 'Ремувка / бирка на рюкзак',
             'stock_quantity' => 10,
             'price' => 290,
@@ -394,6 +436,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 6,
             'name' => 'Наушники',
+            'slug' => Str::slug('Наушники', '-'),
             'description' => 'Проводные/беспроводные наушники',
             'stock_quantity' => 10,
             'price' => 1990,
@@ -404,6 +447,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 6,
             'name' => 'Попсокет',
+            'slug' => Str::slug('Попсокет', '-'),
             'description' => 'PopSocket с брендированным дизайном',
             'stock_quantity' => 10,
             'price' => 150,
@@ -414,6 +458,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 6,
             'name' => 'Термос',
+            'slug' => Str::slug('Термос', '-'),
             'description' => 'Термос для напитков',
             'stock_quantity' => 10,
             'price' => 1200,
@@ -424,6 +469,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 6,
             'name' => 'Коврик для мыши',
+            'slug' => Str::slug('Коврик для мыши', '-'),
             'description' => 'Игровой коврик с логотипом',
             'stock_quantity' => 10,
             'price' => 690,
@@ -434,6 +480,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 6,
             'name' => 'Картахолдер',
+            'slug' => Str::slug('Картахолдер', '-'),
             'description' => 'Картахолдер для карт',
             'stock_quantity' => 10,
             'price' => 290,
@@ -444,6 +491,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 6,
             'name' => 'Картахолдер из экокожи',
+            'slug' => Str::slug('Картахолдер из экокожи', '-'),
             'description' => 'Стильный картахолдер из экокожи',
             'stock_quantity' => 10,
             'price' => 550,
@@ -454,6 +502,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 6,
             'name' => '3D стикер',
+            'slug' => Str::slug('3D стикер', '-'),
             'description' => 'Объёмный 3D-стикер',
             'stock_quantity' => 10,
             'price' => 100,
@@ -464,6 +513,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 6,
             'name' => 'Кружка',
+            'slug' => Str::slug('Кружка', '-'),
             'description' => 'Керамическая кружка с принтом',
             'stock_quantity' => 10,
             'price' => 450,
@@ -474,6 +524,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 6,
             'name' => 'Шарф',
+            'slug' => Str::slug('Шарф', '-'),
             'description' => 'Тёплый шарф с логотипом',
             'stock_quantity' => 10,
             'price' => 1290,
@@ -484,6 +535,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 6,
             'name' => 'Ручка',
+            'slug' => Str::slug('Ручка', '-'),
             'description' => 'Шариковая ручка с логотипом',
             'stock_quantity' => 10,
             'price' => 180,
@@ -494,6 +546,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 6,
             'name' => 'Тетрадь',
+            'slug' => Str::slug('Тетрадь', '-'),
             'description' => 'Тетрадь с брендированной обложкой',
             'stock_quantity' => 10,
             'price' => 290,
@@ -504,6 +557,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 6,
             'name' => 'Чехол для телефона',
+            'slug' => Str::slug('Чехол для телефона', '-'),
             'description' => 'Защитный чехол с логотипом команды',
             'stock_quantity' => 10,
             'price' => 990,
@@ -514,6 +568,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 6,
             'name' => 'Колонка-ночник',
+            'slug' => Str::slug('Колонка-ночник', '-'),
             'description' => 'Портативная Bluetooth-колонка с функцией ночника',
             'stock_quantity' => 10,
             'price' => 1200,
@@ -524,6 +579,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 6,
             'name' => 'Мешок для обуви',
+            'slug' => Str::slug('Мешок для обуви', '-'),
             'description' => 'Стильный мешок для хранения/переноски обуви',
             'stock_quantity' => 10,
             'price' => 650,
@@ -534,6 +590,7 @@ class DatabaseSeeder extends Seeder
         Product::create([
             'category_id' => 6,
             'name' => 'Носки',
+            'slug' => Str::slug('Носки', '-'),
             'description' => 'Фирменные спортивные носки',
             'stock_quantity' => 10,
             'price' => 390,

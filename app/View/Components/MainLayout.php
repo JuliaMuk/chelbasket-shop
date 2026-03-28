@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Category;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
@@ -13,6 +14,7 @@ class MainLayout extends Component
      */
     public function render(): View
     {
-        return view('layouts.main');
+        $categories = Category::all();
+        return view('layouts.main', compact('categories'));
     }
 }

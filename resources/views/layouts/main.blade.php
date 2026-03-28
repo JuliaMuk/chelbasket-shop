@@ -17,21 +17,19 @@
                 <ul>
                     <li><a class="link" href="{{ route('home') }}">Главная</a></li>
                     <li class="dropdown">
-                        <a class="link" href="{{ route('catalog') }}">Каталог <img src="img/icons/arrow_down.svg" alt="arrow" width="25px"></a>
+                        <a class="link" href="{{ route('categories') }}">Каталог <img src="/img/icons/arrow_down.svg" alt="arrow" width="25px"></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ route('t-shirt') }}">Футболки</a></li>
-                            <li><a href="{{ route('singlet') }}">Майки</a></li>
-                            <li><a href="{{ route('balls') }}">Мячи</a></li>
-                            <li><a href="{{ route('sweatshirts') }}">Кофты</a></li>
-                            <li><a href="{{ route('souvenirs') }}">Сувениры</a></li>
+                            @foreach ($categories as $category)
+                                <li><a href="{{ route('catalog', ['category' => $category->slug]) }}">{{ $category->name }}</a></li>
+                            @endforeach                    
                         </ul>
                     </li>
                 </ul>
             </nav>
             <div class="header-right">
-                <a href=><img src="img/icons/search.svg" alt="search"></a>    
-                <a href="{{ route('basket') }}"><img src="img/icons/basket.svg" alt="bag"></a>
-                <a href="{{ route('autorisation') }}"><img src="img/icons/user.svg" alt="user"></a>
+                <a href=><img src="/img/icons/search.svg" alt="search"></a>    
+                <a href="{{ route('basket') }}"><img src="/img/icons/basket.svg" alt="bag"></a>
+                <a href="{{ route('autorisation') }}"><img src="/img/icons/user.svg" alt="user"></a>
             </div>
         </div>
     </header>
@@ -57,11 +55,9 @@
                     <li><a href="#">Покупателям</a></li>
                 </div>
                 <div>
-                    <li><a href="#">Футболки</a></li>
-                    <li><a href="#">Майки</a></li>
-                    <li><a href="#">Кофты</a></li>
-                    <li><a href="#">Мячи</a></li>
-                    <li><a href="#">Сувениры</a></li>
+                    @foreach ($categories as $category)
+                        <li><a href="{{ route('catalog', ['category' => $category->slug]) }}">{{ $category->name }}</a></li>
+                    @endforeach
                 </div>
             </div>
         </div>

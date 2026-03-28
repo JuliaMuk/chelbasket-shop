@@ -18,7 +18,7 @@
                 <ul>
                     <li><a class="link" href="{{ route('home') }}">Главная</a></li>
                     <li class="dropdown">
-                        <a class="link" href="{{ route('catalog') }}">Каталог <img src="img/icons/arrow_down.svg" alt="arrow" width="25px"></a>
+                        <a class="link" href="{{ route('categories') }}">Каталог <img src="img/icons/arrow_down.svg" alt="arrow" width="25px"></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Футболки</a></li>
                             <li><a href="#">Майки</a></li>
