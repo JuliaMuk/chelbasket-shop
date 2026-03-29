@@ -63,7 +63,7 @@ class CategoryResource extends Resource
                     ->sortable(),
                 Tables\Columns\ImageColumn::make('path_img')
                     ->label('Изображение')
-                    ->getStateUsing(fn (Category $record) => $record->path_img)
+                    ->getStateUsing(fn (Category $record) => $record->path_img_url)
                     ->square()
                     ->size(56),
                 Tables\Columns\TextColumn::make('created_at')

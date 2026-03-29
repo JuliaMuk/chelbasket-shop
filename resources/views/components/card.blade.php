@@ -3,7 +3,7 @@
 
 <div class="card">
     <div class="rating">
-        <span>4.5</span>
+        <span>{{ $product->rating }}</span>
         <img class="star" src="/img/icons/star.svg">
     </div>
 
@@ -11,7 +11,7 @@
         <img src="/img/icons/edit.svg">
     </div>
 
-    <img class="card-image" src="{{$product->path_img}}" width="300px" height="294px">
+    <img class="card-image" src="{{asset('storage/' . $product->path_img)}}" width="300px" height="294px">
 
     <div class="description">
         <p class="title">{{ $product->name }}</p>

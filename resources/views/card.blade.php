@@ -14,15 +14,16 @@
                     <div class="product-gallery">
                         <div class="gallery-container">
                             <div class="gallery-thumbs-vertical">
-                                <div class="thumb thumb-active" style="background-image: url('img/mauka/mauka_black_1.jpg')"></div>
-                                <div class="thumb" style="background-image: url('img/mauka/mauka_black_1.jpg')"></div>
-                                <div class="thumb" style="background-image: url('img/mauka/mauka_black_1.jpg')"></div>
+                                <div class="thumb thumb-active" style="background-image: url({{asset('storage/' . $product->path_img)}})"></div>
+                                @foreach ($product->extra_images as $key => $value)
+                                    <div class="thumb" style="background-image: url({{ asset('storage/'. $value) }})"></div>
+                                @endforeach
                             </div>
                             <div class="gallery-main">
                                 <div class="swiper product-main-slider">
                                     <div class="swiper-wrapper">
                                         <div class="swiper-slide">
-                                            <img src="img/mauka/mauka_black_1.jpg" alt="Товар">
+                                            <img src="{{asset('storage/' . $product->path_img)}}" alt="{{ $product->name }}">
                                         </div>
                                     </div> 
                                 </div>
@@ -32,7 +33,7 @@
                                 </div>
                                 <div class="rating-badge">
                                     <span class="star">★</span>
-                                    <span>5</span>
+                                    <span>{{ $product->rating }}</span>
                                 </div>
                             </div>
                         </div>

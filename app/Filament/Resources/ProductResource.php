@@ -3,15 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
-use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Models\Product;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ProductResource extends Resource
 {
@@ -58,9 +55,30 @@ class ProductResource extends Resource
                     ->label('Цена по акции')
                     ->numeric()
                     ->prefix('₽'),
+                Forms\Components\TextInput::make('rating')
+                    ->label('Рейтинг')
+                    ->numeric()
+                    ->required(),
                 Forms\Components\Toggle::make('is_new')
                     ->label('Новинка')
                     ->default(false),
+                Forms\Components\FileUpload::make('path_img')
+                    ->label('Главное изображение')
+                    ->image()
+                    ->disk('public')
+                    ->directory('product-images')
+                    ->visibility('public'),
+                Forms\Components\FileUpload::make('extra_images')
+                    ->label('Галерея изображений')
+                    ->helperText('Несколько фото товара. Порядок можно менять перетаскиванием.')
+                    ->multiple()
+                    ->reorderable()
+                    ->appendFiles()
+                    ->image()
+                    ->disk('public')
+                    ->directory('product-gallery')
+                    ->visibility('public')
+                    ->maxFiles(20),
                 Forms\Components\KeyValue::make('characteristics')
                     ->label('Размеры')
                     ->keyLabel('Название')
@@ -90,12 +108,20 @@ class ProductResource extends Resource
                     ->label('Цена')
                     ->money('RUB')
                     ->sortable(),
+                Tables\Columns\TextColumn::make('rating')
+                    ->label('Рейтинг')
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('stock_quantity')
                     ->label('На складе')
                     ->sortable(),
                 Tables\Columns\ToggleColumn::make('is_new')
                     ->label('Новинка')
                     ->sortable(),
+                Tables\Columns\ImageColumn::make('path_img')
+                    ->label('Главное изображение')
+                    ->getStateUsing(fn (Product $record) => $record->path_img_url)
+                    ->square()
+                    ->size(56),                
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('category')

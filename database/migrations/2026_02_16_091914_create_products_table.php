@@ -23,6 +23,8 @@ return new class extends Migration
             $table->decimal('sale_price', 10, 2)->nullable();
             $table->json('characteristics')->nullable();
             $table->string('path_img')->nullable();
+            $table->decimal('rating',2,1)->default(5.0);
+            $table->json('extra_images')->nullable();
             $table->timestamps();
         });
     }

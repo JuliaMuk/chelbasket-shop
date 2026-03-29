@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 class Product extends Model
 {
@@ -18,6 +19,9 @@ class Product extends Model
         'sale_price',
         'characteristics',
         'is_new',
+        'rating',
+        'path_img',
+        'extra_images'
     ];
 
     protected $casts = [
@@ -25,7 +29,10 @@ class Product extends Model
         'price' => 'decimal:2',
         'sale_price' => 'decimal:2',
         'is_new' => 'boolean',
+        'rating' => 'decimal:1',
+        'extra_images' => 'array'
     ];
+
 
     public function category(): BelongsTo
     {
@@ -35,6 +42,28 @@ class Product extends Model
     public function orderItems(): HasMany
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    public function getPathImgUrlAttribute(): ?string
+    {
+        if (blank($this->path_img)) {
+            return null;
+        }
+
+        $path = $this->path_img;
+
+        // Если путь уже является URL — возвращаем как есть.
+        if (Str::startsWith($path, ['http://', 'https://', '//'])) {
+            return $path;
+        }
+
+        // Если картинка лежит в storage/app/public — отдаем публичный URL.
+        if (Storage::disk('public')->exists($path)) {
+            return Storage::disk('public')->url($path);
+        }
+
+        // Иначе считаем, что путь относится к папке public/ (как в вашем DatabaseSeeder).
+        return asset($path);
     }
 
 
