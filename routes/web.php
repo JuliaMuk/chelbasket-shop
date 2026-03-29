@@ -17,7 +17,7 @@ Route::get('/', [ProductController::class,'home'])->name('home');
 
 Route::get('/categories', [ProductController::class,'categories'])->name('categories');
 Route::get('/catalog/{category}', [ProductController::class,'catalog'])->name('catalog');
-
+Route::get('/products/{product}',[ProductController::class,'show'])->name('card');
 
 Route::get('/registration', function () {
     return view('registration');
@@ -26,6 +26,8 @@ Route::get('/registration', function () {
 Route::get('/autorisation', function () {
     return view('autorisation');
 })->middleware('guest')->name('autorisation');
+
+
 
 Route::get('/user', function () {
     return view('user');
@@ -49,9 +51,7 @@ Route::get('/basket', function () {
     return view('basket');
 })->name('basket');
 
-Route::get('/card', function () {
-    return view('card');
-})->name('card');
+
 
 
 Route::middleware('auth')->group(function () {

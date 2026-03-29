@@ -33,6 +33,16 @@ class CategoryResource extends Resource
                     ->label('Название')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\TextInput::make('slug')
+                    ->label('Slug')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\FileUpload::make('path_img')
+                    ->label('Изображение')
+                    ->image()
+                    ->disk('public')
+                    ->directory('category-images')
+                    ->visibility('public'),
             ]);
     }
 
@@ -47,6 +57,15 @@ class CategoryResource extends Resource
                     ->label('Название')
                     ->searchable()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('slug')
+                    ->label('Slug')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\ImageColumn::make('path_img')
+                    ->label('Изображение')
+                    ->getStateUsing(fn (Category $record) => $record->path_img)
+                    ->square()
+                    ->size(56),
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Создано')
                     ->dateTime()

@@ -12,11 +12,11 @@
             <div class="cards" id="cardsContainer">
                 @foreach ($categories as $category)
                     <a href="{{ route('catalog', ['category' => $category->slug]) }}" class="card">
-                        <img src="{{ $category->path_img }}" alt="{{ $category->name }}">
+                        <img src="{{ asset('storage/' . $category->path_img) }}" alt="{{ $category->name }}">
                     </a>
                 @endforeach     
                 <a href="{{ route('catalog', ['category' => 'new-collection']) }}" class="card">
-                        <img src="img/catalog/баннер1.svg" alt="новая коллекция">
+                        <img src="{{ asset('storage/category-images/news.svg') }}" alt="новая коллекция">
                 </a>              
             </div>
       </div>

@@ -33,6 +33,10 @@ class ProductResource extends Resource
                     ->label('Название')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\TextInput::make('slug')
+                    ->label('Slug')
+                    ->required()
+                    ->maxLength(255),
                 Forms\Components\Select::make('category_id')
                     ->label('Категория')
                     ->relationship('category', 'name')
@@ -54,8 +58,11 @@ class ProductResource extends Resource
                     ->label('Цена по акции')
                     ->numeric()
                     ->prefix('₽'),
+                Forms\Components\Toggle::make('is_new')
+                    ->label('Новинка')
+                    ->default(false),
                 Forms\Components\KeyValue::make('characteristics')
-                    ->label('Характеристики')
+                    ->label('Размеры')
                     ->keyLabel('Название')
                     ->valueLabel('Значение'),
             ]);
@@ -72,6 +79,10 @@ class ProductResource extends Resource
                     ->label('Название')
                     ->searchable()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('slug')
+                    ->label('Slug')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('category.name')
                     ->label('Категория')
                     ->sortable(),
@@ -81,6 +92,9 @@ class ProductResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('stock_quantity')
                     ->label('На складе')
+                    ->sortable(),
+                Tables\Columns\ToggleColumn::make('is_new')
+                    ->label('Новинка')
                     ->sortable(),
             ])
             ->filters([

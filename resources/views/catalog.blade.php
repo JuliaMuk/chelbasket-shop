@@ -23,8 +23,8 @@
                     
 
                     @foreach ($products as $product)
-                        <a href="{{ route('card') }}" class="card-link">
-                            <x-cards :products="[$product]" />
+                        <a href="{{ route('card', ['product' => $product->slug]) }}" class="card-link">
+                            <x-card :product="$product" />
                         </a>
                     @endforeach
 

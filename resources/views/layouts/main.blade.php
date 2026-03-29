@@ -29,7 +29,7 @@
             <div class="header-right">
                 <a href=><img src="/img/icons/search.svg" alt="search"></a>    
                 <a href="{{ route('basket') }}"><img src="/img/icons/basket.svg" alt="bag"></a>
-                <a href="{{ route('autorisation') }}"><img src="/img/icons/user.svg" alt="user"></a>
+                
             </div>
         </div>
     </header>
@@ -47,13 +47,7 @@
                 <input class="footer-btn" type="submit" value="ПОДПИСАТЬСЯ">
             </div>
             <div class="right-footer">
-                <div>
-                    <li><a href="#">Способы оплаты</a></li>
-                    <li><a href="#">Статус заказа</a></li>
-                    <li><a href="#">Возвраты</a></li>
-                    <li><a href="#">Подарочные карты</a></li>
-                    <li><a href="#">Покупателям</a></li>
-                </div>
+               
                 <div>
                     @foreach ($categories as $category)
                         <li><a href="{{ route('catalog', ['category' => $category->slug]) }}">{{ $category->name }}</a></li>
@@ -71,9 +65,9 @@
                     <a href="#">Политика конфиденциальности</a>
                 </div>
                 <div>
-                    <img src="img/icons/vk.svg" alt="vk">
-                    <img src="img/icons/youtube.svg" alt="youtube">
-                    <img src="img/icons/tg.svg" alt="tg">
+                    <img src="/img/icons/vk.svg" alt="vk">
+                    <img src="/img/icons/youtube.svg" alt="youtube">
+                    <img src="/img/icons/tg.svg" alt="tg">
                 </div>
             </div>  
         </div>

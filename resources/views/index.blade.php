@@ -64,19 +64,19 @@
             <div class="block-cards-right">
 
                 <div class="cards-up">
-                    <x-cards 
-                        :products="[$products[0]]"
+                    <x-card 
+                        :product="$products[0]"
                     />
-                    <x-cards 
-                        :products="[$products[1]]"
+                    <x-card 
+                        :product="$products[1]"
                     />
                 </div>
                 <div class="cards-down">
-                    <x-cards 
-                        :products="[$products[2]]"
+                    <x-card 
+                        :product="$products[2]"
                     />
-                    <x-cards 
-                        :products="[$products[3]]"
+                    <x-card 
+                        :product="$products[3]"
                     />
                 </div>
             </div>

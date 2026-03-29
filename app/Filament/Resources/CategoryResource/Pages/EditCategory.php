@@ -5,6 +5,7 @@ namespace App\Filament\Resources\CategoryResource\Pages;
 use App\Filament\Resources\CategoryResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
+use Illuminate\Support\Str;
 
 class EditCategory extends EditRecord
 {
@@ -15,5 +16,12 @@ class EditCategory extends EditRecord
         return [
             Actions\DeleteAction::make(),
         ];
+    }
+
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        $data['slug'] = Str::slug($data['name'] ?? '', '-') ?: Str::lower(Str::random(8));
+
+        return $data;
     }
 }

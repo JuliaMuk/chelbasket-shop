@@ -42,61 +42,35 @@
                     
                     <div class="product-info">
                         <div>
-                            <h1 class="product-title">Футболка с логотипом</h1>
+                            <h1 class="product-title">{{ $product->name }}</h1>
                         </div>
                         <div class="size-section">
                             <h3 class="section-title">Размер</h3>
                             <div class="size-grid">
-                                <button class="size-btn" data-size="XS">
-                                    <span>XS</span>
-                                    <span class="size-range">40</span>
+                                @foreach ($product->characteristics  as $key => $value)
+                                <button class="size-btn" data-size="{{ $key  }}" {{ $value == 0 ? 'disabled':'' }}>
+                                    {{ $key  }}
                                 </button>
-                                <button class="size-btn" data-size="S">
-                                    <span>S</span>
-                                    <span class="size-range">42</span>
-                                </button>
-                                <button class="size-btn" data-size="M">
-                                    <span>M</span>
-                                    <span class="size-range">44</span>
-                                </button>
-                                <button class="size-btn" data-size="L">
-                                    <span>L</span>
-                                    <span class="size-range">46</span>
-                                </button>
-                                <button class="size-btn" data-size="XL">
-                                    <span>XL</span>
-                                    <span class="size-range">48</span>
-                                </button>
-                                <button class="size-btn" data-size="XXL">
-                                    <span>XXL</span>
-                                    <span class="size-range">50</span>
-                                </button>
-                                <button class="size-btn" data-size="3XL">
-                                    <span>3XL</span>
-                                    <span class="size-range">52</span>
-                                </button>
-                                <button class="size-btn" data-size="4XL">
-                                    <span>4XL</span>
-                                    <span class="size-range">56</span>
-                                </button>
+                                @endforeach
+                                
                             </div>
                         </div>
 
                         <div class="description-section">
                             <h3 class="section-title">Описание</h3>
                             <p class="description-text">
-                                Дай понять, за кого бьется твое сердце! Эта футболка - символ твоей верности команде, а не просто одежда. Покажи, что ты - часть армии поклонников баскетбольного драйва: покоряй трибуны, покоряй город!
+                                {{ $product->description }}
                             </p>
                         </div>
 
                         <div class="action-buttons">
                             <button class="btn btn-primary" id="addToCartBtn">В КОРЗИНУ</button>
-                            <button class="btn btn-secondary" id="leaveReviewBtn">ОСТАВИТЬ ОТЗЫВ</button>
+                            {{--<button class="btn btn-secondary" id="leaveReviewBtn">ОСТАВИТЬ ОТЗЫВ</button>--}}
                         </div>
                     </div>
                 </div>
 
-                <section class="reviews-section">
+                {{-- <section class="reviews-section">
                     <h2 class="section-title-large">ОТЗЫВЫ</h2>
                     <div class="swiper reviews-slider">
                         <div class="swiper-wrapper">
@@ -142,7 +116,7 @@
                         
                         
                     </div>
-                </section>
+                </section>--}}
             </div>
         </div>
         <div class="modal modal-size" id="modalSize">
