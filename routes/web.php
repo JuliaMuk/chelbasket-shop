@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\UserController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +21,15 @@ Route::get('/', [ProductController::class,'home'])->name('home');
 Route::get('/categories', [ProductController::class,'categories'])->name('categories');
 Route::get('/catalog/{category}', [ProductController::class,'catalog'])->name('catalog');
 Route::get('/products/{product}',[ProductController::class,'show'])->name('card');
+Route::post('/order/add-item',[OrderController::class,'addItem'])->name('order.add-item');
+Route::get('/basket', [OrderController::class, 'show'])->name('basket');
+Route::delete('/order/item', [OrderController::class, 'removeItem'])->name('order.remove-item');
+Route::get('/order/plus-item', [OrderController::class, 'plusItem'])->name('order.plus-item');
+Route::get('/order/minus-item', [OrderController::class, 'minusItem'])->name('order.minus-item');
+Route::get('/buy', [OrderController::class,'placeOrder'])->name('buy');
+Route::post('/order/create', [OrderController::class,'create'])->name('order.create');
+Route::post('/search',[SearchController::class,'index'])->name('search');
+Route::post('/subscribe',[UserController::class,'subscribe'])->name('subscribe');
 
 Route::get('/registration', function () {
     return view('registration');
@@ -43,14 +55,13 @@ Route::get('/history', function () {
     return view('history');
 })->name('history');
 
-Route::get('/buy', function () {
-    return view('buy');
-})->name('buy');
 
-Route::get('/basket', function () {
-    return view('basket');
-})->name('basket');
 
+
+Route::get('/clean-session', function(){
+    session()->flush();
+    return redirect()->back();
+});
 
 
 

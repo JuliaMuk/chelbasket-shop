@@ -34,6 +34,14 @@ class ProductResource extends Resource
                     ->label('Slug')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\TextInput::make('keywords')
+                    ->label('Ключевые слова')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\Textarea::make('meta_description')
+                    ->label('Мета описание')
+                    ->required()
+                    ->rows(3),
                 Forms\Components\Select::make('category_id')
                     ->label('Категория')
                     ->relationship('category', 'name')
@@ -99,6 +107,14 @@ class ProductResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('slug')
                     ->label('Slug')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('keywords')
+                    ->label('Ключевые слова')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('meta_description')
+                    ->label('Мета описание')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('category.name')

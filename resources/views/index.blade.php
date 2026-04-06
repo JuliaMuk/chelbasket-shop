@@ -6,6 +6,12 @@
     <x-slot:title>
         Челбаскет
     </x-slot:title>
+    <x-slot:description>
+        Челбаскет - магазин футболок, майок, мячей, кофт и сувениров
+    </x-slot:description>
+    <x-slot:keywords>
+        Челбаскет, футболки, майки, мячи, кофты, сувениры
+    </x-slot:keywords>
 
     <div class="main">
         <div class="intro">

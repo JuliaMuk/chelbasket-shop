@@ -400,3 +400,7 @@ main {
         width: 100%;
     }
 }
+
+.basket-count {
+    font-family: "VisbyBold", sans-serif;
+}

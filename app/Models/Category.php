@@ -13,6 +13,8 @@ class Category extends Model
         'name',
         'slug',
         'path_img',
+        'keywords',
+        'meta_description'
     ];
 
     public function getPathImgUrlAttribute(): ?string

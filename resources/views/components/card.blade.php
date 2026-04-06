@@ -20,6 +20,6 @@
 
     <div class="card-button
         {{ $product->stock_quantity > 0 ? '' : 'card-button-none' }}">
-        {{ $product->stock_quantity > 0 ? 'В корзину' : 'Нет в наличии' }}
+        {{ $product->stock_quantity > 0 ? 'Купить' : 'Нет в наличии' }}
     </div>
 </div>

@@ -28,5 +28,5 @@ class ProductController extends Controller
     public function show($product){
         $product = Product::where('slug', $product)->first();
         return view('card', compact('product'));
-    }
+    }    
 }

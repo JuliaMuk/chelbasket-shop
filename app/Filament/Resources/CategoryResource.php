@@ -37,6 +37,14 @@ class CategoryResource extends Resource
                     ->label('Slug')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\TextInput::make('keywords')
+                    ->label('Ключевые слова')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\Textarea::make('meta_description')
+                    ->label('Мета описание')
+                    ->required()
+                    ->rows(3),
                 Forms\Components\FileUpload::make('path_img')
                     ->label('Изображение')
                     ->image()
@@ -57,8 +65,12 @@ class CategoryResource extends Resource
                     ->label('Название')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('slug')
-                    ->label('Slug')
+                Tables\Columns\TextColumn::make('keywords')
+                    ->label('Ключевые слова')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('meta_description')
+                    ->label('Мета описание')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\ImageColumn::make('path_img')

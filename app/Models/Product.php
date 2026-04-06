@@ -21,7 +21,10 @@ class Product extends Model
         'is_new',
         'rating',
         'path_img',
-        'extra_images'
+        'extra_images',
+        'keywords',
+        'meta_description'
+
     ];
 
     protected $casts = [
@@ -43,6 +46,12 @@ class Product extends Model
     {
         return $this->hasMany(OrderItem::class);
     }
+
+    public function isAvailable()
+    {
+        return $this->stock_quantity > 0 ? true : false;
+    }
+
 
     public function getPathImgUrlAttribute(): ?string
     {

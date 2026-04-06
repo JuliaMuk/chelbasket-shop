@@ -10,38 +10,49 @@
         <div class="main-container">
             <div class="headline">ОФОРМЛЕНИЕ ЗАКАЗА</div>
             <div class="buy-wrap">
-                <form id="buy-form">
-                    <input type="text" name="fullname" placeholder="ФИО*" required>
+                <form id="buy-form" action="{{ route('order.create') }}" method="POST">
+                    @csrf
+                    <input type="text" name="customer_name" placeholder="ФИО*" required>
                     <input type="email" name="email" placeholder="Эл.почта*"required>
                     <input type="tel" name="phone" placeholder="Номер телефона*" required>
                     <input type="text" name="city" placeholder="Город*" required>
-                    <input type="text" name="pick-up-point" placeholder="Пункт получения*" required>
+                    <input type="text" name="address" placeholder="Пункт получения*" required>
                     <input type="text" name="comment" placeholder="Комментарий*" required>
                     <button id="place-an-order" type="submit">ОФОРМИТЬ ЗАКАЗ</button>
                 </form>
                 <div class="products-list">
+                @foreach ($orderItems as $item)
                     <div class="product">
                         <div class="product-image">
-                            <img src="img/basket/ball_basket.png" alt="">
+                            <img src="{{ asset('storage/'. $item['path_img'])  }}" alt="">
                         </div>
                         <div class="product-info">
                             <div class="product-name">
-                                Футболка с печатью
+                            {{ $item['name'] }}
                             </div>
                             <div class="product-size">
-                                s <br> 42-44
+                            {{ $item['characteristic']}}
                             </div>
                         </div>
                         <div class="product-count">
-                            <button class="count-change">-</button> 2 <button class="count-change">+</button>
-                        </div>
+                                <a href="{{ route('order.minus-item',['product_id' => $item['product_id']]) }}" class="count-change">-</a> {{$item['quantity']}} <a href="{{ route('order.plus-item', ['product_id' => $item['product_id']]) }}" class="count-change">+</a>
+                            </div>
                         <div class="product-price">
-                            1 980₽
+                        {{ $item['price']*$item['quantity'] }}
                         </div>
-                        <button id="remove-product">
-                            <img src="img/icons/trashcan.svg" alt="Удалить">
-                        </button>
+                        <form action="{{route('order.remove-item')}}" method="POST">
+                                @method('delete')
+                                @csrf
+                                <input type="hidden" name='product_id' value="{{$item['product_id']}}">
+                                <button type="submit" id="remove-product">
+                                    <img src="img/icons/trashcan.svg" alt="Удалить">
+                                </button>
+                            </form>
                     </div>
+                    @endforeach
+
+                    <div class="order-headline">ИТОГО</div>
+                    <div class="total-price">{{ $cost}}₽ </div>
                 </div>
             </div>
         </div>

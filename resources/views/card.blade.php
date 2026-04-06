@@ -1,12 +1,18 @@
 @push('vite')
-    @vite(['resources/css/card.css'])
-    @vite('resources/css/overlay.css')
+@vite(['resources/css/card.css'])
+@vite('resources/css/overlay.css')
 @endpush
 
 <x-main-layout>
     <x-slot:title>
         Челбаскет
     </x-slot:title>
+    <x-slot:description>
+        {{ $product->meta_description ?? 'Новая коллекция' }}
+    </x-slot:description>
+    <x-slot:keywords>
+        {{ $product->keywords ?? 'Челбаскет, футболки, майки, мячи, кофты, сувениры' }}
+    </x-slot:keywords>
     <div class="main">
         <div class="main-product">
             <div class="width">
@@ -16,7 +22,7 @@
                             <div class="gallery-thumbs-vertical">
                                 <div class="thumb thumb-active" style="background-image: url({{asset('storage/' . $product->path_img)}})"></div>
                                 @foreach ($product->extra_images as $key => $value)
-                                    <div class="thumb" style="background-image: url({{ asset('storage/'. $value) }})"></div>
+                                <div class="thumb" style="background-image: url({{ asset('storage/'. $value) }})"></div>
                                 @endforeach
                             </div>
                             <div class="gallery-main">
@@ -25,11 +31,11 @@
                                         <div class="swiper-slide">
                                             <img src="{{asset('storage/' . $product->path_img)}}" alt="{{ $product->name }}">
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
-                                 <div class="gallery-nav-bottom">
-                                        <button class="gallery-nav-btn-bottom prev-btn">&lt;</button>
-                                        <button class="gallery-nav-btn-bottom next-btn">&gt;</button>
+                                <div class="gallery-nav-bottom">
+                                    <button class="gallery-nav-btn-bottom prev-btn">&lt;</button>
+                                    <button class="gallery-nav-btn-bottom next-btn">&gt;</button>
                                 </div>
                                 <div class="rating-badge">
                                     <span class="star">★</span>
@@ -37,37 +43,47 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
 
-                    
+
                     <div class="product-info">
-                        <div>
-                            <h1 class="product-title">{{ $product->name }}</h1>
-                        </div>
-                        <div class="size-section">
-                            <h3 class="section-title">Размер</h3>
-                            <div class="size-grid">
-                                @foreach ($product->characteristics  as $key => $value)
-                                <button class="size-btn" data-size="{{ $key  }}" {{ $value == 0 ? 'disabled':'' }}>
-                                    {{ $key  }}
-                                </button>
-                                @endforeach
-                                
+                    
+                        <form action="{{route('order.add-item')}}" method="POST">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{$product->id }}">
+                            <div>
+                                <h1 class="product-title">{{ $product->name }}</h1>
                             </div>
-                        </div>
+                            <div class="size-section">
+                                <h3 class="section-title">Размер</h3>
+                                <div class="size-grid">
+                                    @foreach ($product->characteristics as $key => $value)
+                                    <button class="size-btn" data-size="{{ $key  }}" {{ $value == 0 ? 'disabled':'' }}>
+                                        {{ $key  }}
+                                    </button>
+                                    @endforeach
 
-                        <div class="description-section">
-                            <h3 class="section-title">Описание</h3>
-                            <p class="description-text">
-                                {{ $product->description }}
-                            </p>
-                        </div>
+                                </div>
+                            </div>
 
-                        <div class="action-buttons">
-                            <button class="btn btn-primary" id="addToCartBtn">В КОРЗИНУ</button>
-                            {{--<button class="btn btn-secondary" id="leaveReviewBtn">ОСТАВИТЬ ОТЗЫВ</button>--}}
-                        </div>
+                            <div class="description-section">
+                                <h3 class="section-title">Описание</h3>
+                                <p class="description-text">
+                                    {{ $product->description }}
+                                </p>
+                            </div>
+
+                            <div class="action-buttons">
+                                @if ($product->stock_quantity > 0)
+                                    <button type="submit" class="btn btn-primary" id="addToCartBtn">В КОРЗИНУ</button>
+                                @else
+                                    <p>нет в наличии</p>
+                                @endif
+                                
+                                {{--<button class="btn btn-secondary" id="leaveReviewBtn">ОСТАВИТЬ ОТЗЫВ</button>--}}
+                            </div>
+                        </form>
                     </div>
                 </div>
 
@@ -165,7 +181,7 @@
             <div class="modal-content">
                 <button class="modal-close" data-modal="modalReview">✕</button>
                 <h2 class="modal-title">Оставить отзыв</h2>
-                
+
                 <div class="modal-product-info">
                     <img src="img/mauka/mauka_black_1.jpg" alt="Товар" class="modal-product-img">
                     <div>
