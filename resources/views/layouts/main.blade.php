@@ -17,7 +17,7 @@
     <header class="header">
         <div class="container-header">
             <div class="header-left">
-                <img src="img/icons/Logo.svg" alt="logo" class="logo">
+                <img src="/img/icons/Logo.svg" alt="logo" class="logo">
             </div>
             <nav class="header-menu">
                 <ul>
@@ -35,8 +35,8 @@
             <div class="header-right">
                 <form action="{{route('search')}}" method="POST">
                     @csrf
-                    <input type="text" name="data">
-                    <button type="submit"><img src="/img/icons/search.svg" alt="search"></button>
+                    <input type="text" class="header-search" name="data">
+                    <button type="submit" class="header-search-button"><img src="/img/icons/search.svg" alt="search"></button>
                 </form>
 
 

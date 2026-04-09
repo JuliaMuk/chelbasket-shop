@@ -57,6 +57,8 @@
   cursor: pointer;
   background-color: #F35D00;
 }
+
+
 .card-button-none {
   display: block;
   width: 100%;
@@ -71,6 +73,10 @@
   letter-spacing: 1px;
   text-decoration: none;
   font-family: 'PaluiSPDemo', sans-serif;
+}
+.card-button-none:hover {
+  cursor:default;
+  background-color: #ffffff;
 }
 .description {
   display: flex;
