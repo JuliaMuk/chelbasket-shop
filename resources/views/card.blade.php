@@ -2,8 +2,7 @@
 @vite(['resources/css/card.css'])
 @endpush
 
-<!-- Swiper CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+
 
 <x-main-layout>
   <x-slot:title>
@@ -96,7 +95,7 @@
           <!-- Выбор размера -->
           <form action="{{ route('order.add-item') }}" method="POST" id="addToCartForm">
             @csrf
-            <input type="hidden" name="product_id" value="{{ $product->id }}">
+            <input type="hidden" name="product_id" id="product_id" value="{{ $product->id }}">
             <input type="hidden" name="characteristic" id="selectedSizeInput" value="">
 
             @if (count($product->characteristics) > 0)
@@ -536,4 +535,38 @@
   if (firstActiveSize) {
     firstActiveSize.click();
   }
+
+  // ============================================
+  // ДОБАВЛЕНИЕ ТОВАРА В КОРЗИНУ
+  // ============================================
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    const addToCartForm = document.getElementById('addToCartForm');
+
+    addToCartForm.addEventListener('submit', (e) => {
+
+      e.preventDefault();
+      fetch('/order/add-item', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': token, // Required for Laravel "web" routes
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            product_id: document.getElementById('product_id').value,
+            characteristic: document.getElementById('selectedSizeInput').value
+          })
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (document.getElementById('basket-count').classList.contains('invisible')) {
+            document.getElementById('basket-count').classList.remove('invisible')
+          }
+          document.getElementById('basket-count').textContent = data.count
+        })
+        .catch(error => console.error('Error:', error));
+    })
+  });
 </script>

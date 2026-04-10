@@ -5,11 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $title }}</title>
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="{{ $description ?? 'Челбаскет - магазин футболок, майок, мячей, кофт и сувениров' }}">
     <meta name="keywords" content="{{ $keywords ?? 'Челбаскет, футболки, майки, мячи, кофты, сувениры' }}">
 
     @vite(['resources/css/header-footer.css', 'resources/js/app.js'])
+    <!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
     @stack('vite')
 </head>
 
@@ -42,11 +44,11 @@
 
                 <a href="{{ route('basket') }}">
                     <img src="/img/icons/basket.svg" alt="bag">
-                    @if (session()->has('count') && session('count') > 0)
-                    <div class='basket-count'>
+                   
+                    <div class="basket-count {{ session()->has('count') && session('count') != 0 ? '' : 'invisible' }}"  id='basket-count'>
                         {{ session('count') }}
                     </div>
-                    @endif
+                 
               
                 </a>
 

@@ -288,3 +288,6 @@ const firstActiveSize = document.querySelector(".size-btn:not(:disabled)");
 if (firstActiveSize) {
   firstActiveSize.click();
 }
+
+
+

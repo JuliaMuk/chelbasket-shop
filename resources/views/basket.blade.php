@@ -11,53 +11,53 @@
             <div class="headline">КОРЗИНА</div>
             @if (!$orderItems)
             <p>Корзина пуста</p>
-            <a href="route('categories')">Выберите товары</a>
+            <a href="{{route('categories')}}">Выберите товары</a>
             @else
 
             <div class="basket">
                 <div class="products-list">
                     @foreach ($orderItems as $item)
-                        <div class="product">
-                            <div class="product-image">
-                                @isset($item['path_img'])
-                                    <img src="{{ asset('storage/'. $item['path_img']) }}" alt="{{ $item['name'] }}">
-                                @else
-                                    <img src="{{ asset('img/no-image.webp') }}" alt="{{ $item['name'] }}">
-                                @endisset                                
-                            </div>
-                            <div class="product-info">
-                                <div class="product-name">
-                                    {{ $item['name'] }}
-                                </div>
-                                @if (isset($item['characteristic']) && $item['characteristic'])
-                                <div class="product-size">
-                                    Размер: {{ $item['characteristic'] }}
-                                </div>
-                                @endif
-                            </div>
-                            <div class="product-count">
-                                <a href="{{ route('order.minus-item',['product_id' => $item['product_id'], 'characteristic' => $item['characteristic']]) }}" class="count-change">-</a> {{$item['quantity']}} <a href="{{ route('order.plus-item', ['product_id' => $item['product_id'], 'characteristic' => $item['characteristic']]) }}" class="count-change">+</a>
-                            </div>
-                            <div class="product-price">
-                            {{ $item['price']*$item['quantity'] }}₽
-                            </div>
-                            <form action="{{route('order.remove-item')}}" method="POST">
-                                @method('delete')
-                                @csrf
-                                <input type="hidden" name='product_id' value="{{$item['product_id']}}">
-                                <input type="hidden" name='characteristic' value="{{$item['characteristic']}}">
-                                <button type="submit" class="remove-product-btn">
-                                    <img src="img/icons/trashcan.svg" alt="Удалить">
-                                </button>
-                            </form>
-
+                    <div class="product">
+                        <div class="product-image">
+                            @isset($item['path_img'])
+                            <img src="{{ asset('storage/'. $item['path_img']) }}" alt="{{ $item['name'] }}">
+                            @else
+                            <img src="{{ asset('img/no-image.webp') }}" alt="{{ $item['name'] }}">
+                            @endisset
                         </div>
+                        <div class="product-info">
+                            <div class="product-name">
+                                {{ $item['name'] }}
+                            </div>
+                            @if (isset($item['characteristic']) && $item['characteristic'])
+                            <div class="product-size">
+                                Размер: {{ $item['characteristic'] }}
+                            </div>
+                            @endif
+                        </div>
+                        <div class="product-count" data-id="{{ $item['product_id']}}" data-characteristic="{{ $item['characteristic'] }}">
+                            <a href="{{ route('order.minus-item',['product_id' => $item['product_id'], 'characteristic' => $item['characteristic']]) }}" class="count-change count-change-minus">-</a> <span>{{$item['quantity']}}</span><a href="{{ route('order.plus-item', ['product_id' => $item['product_id'], 'characteristic' => $item['characteristic']]) }}" class="count-change count-change-plus">+</a>
+                        </div>
+                        <div class="product-price">
+                            {{ $item['price']*$item['quantity'] }}₽
+                        </div>
+                        <form action="{{route('order.remove-item')}}" method="POST" class="removeFromCartForm">
+                            @method('delete')
+                            @csrf
+                            <input type="hidden" name='product_id' id='product_id' value="{{$item['product_id']}}">
+                            <input type="hidden" name='characteristic' id='characteristic' value="{{$item['characteristic']}}">
+                            <button type="submit" class="remove-product-btn">
+                                <img src="img/icons/trashcan.svg" alt="Удалить">
+                            </button>
+                        </form>
+
+                    </div>
                     @endforeach
 
 
-                   
-                    
-                  
+
+
+
                 </div>
                 <div class="basket-order">
                     <div class="order-headline">ИТОГО</div>
@@ -73,3 +73,7 @@
         </div>
     </div>
 </x-main-layout>
+
+<script>
+   
+</script>

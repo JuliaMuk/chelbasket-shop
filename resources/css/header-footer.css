@@ -460,3 +460,7 @@ main {
 .basket-count {
     font-family: "VisbyBold", sans-serif;
 }
+
+.invisible {
+    visibility: hidden;
+}

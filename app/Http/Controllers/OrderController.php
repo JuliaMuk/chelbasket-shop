@@ -15,8 +15,7 @@ use function Pest\Laravel\session;
 class OrderController extends Controller
 {
 
-    public function show()
-    {
+    public function cost(){
         $orderItems = [];
         $cost = 0;
         if (Session::has('cart')) {
@@ -30,6 +29,15 @@ class OrderController extends Controller
             }
             unset($item);
         }
+        return ['cost'=> $cost, 'orderItems' =>$orderItems];
+    }
+
+    public function show()
+    {
+        
+        $data = $this->cost();
+        $cost = $data['cost'];
+        $orderItems = $data['orderItems'];
         return view('basket', compact('orderItems', 'cost'));
     }
     public function addItem(Request $request)
@@ -69,7 +77,10 @@ class OrderController extends Controller
             $count = 1;
         }
         Session::put('count', $count);
-        return redirect()->back();
+        // return redirect()->back();
+        return response()->json([
+            'count' => $count,
+        ]);
     }
 
     public function removeItem(Request $request)
@@ -98,7 +109,13 @@ class OrderController extends Controller
             $orderItems = array_values($orderItems);
             Session::put('cart', $orderItems);
         }
-        return redirect()->back();
+        $cost = $this->cost();
+        $cost = $cost['cost'];
+        //return redirect()->back();
+        return response()->json([
+            'count' => $count,
+            'cost' => $cost
+        ]);
     }
 
     public function minusItem(Request $request)
@@ -130,10 +147,23 @@ class OrderController extends Controller
                 }
 
                 $orderItems[$foundKey]['quantity']--;
+                $quantity = $orderItems[$foundKey]['quantity'];
             }
             Session::put('cart', $orderItems);
+            
         }
-        return redirect()->back();
+        $data = $this->cost();
+        $cost = $data['cost'];
+        $positionCost = $data['orderItems'][$foundKey]['price'] * $quantity;
+       
+        //return redirect()->back();
+        return response()->json([
+            'count' => $count,
+            'cost' => $cost,
+            'quantity' => $quantity,
+            'positionCost' => $positionCost 
+        ]);
+
     }
 
     public function plusItem(Request $request)
@@ -157,26 +187,29 @@ class OrderController extends Controller
                 Session::put('count', $count);
             }
             $orderItems[$foundKey]['quantity']++;
+            $quantity = $orderItems[$foundKey]['quantity'];
+            
             Session::put('cart', $orderItems);
         }
-        return redirect()->back();
+        $data = $this->cost();
+        $cost = $data['cost'];
+        $positionCost = $data['orderItems'][$foundKey]['price'] * $quantity;
+       
+        //return redirect()->back();
+        return response()->json([
+            'count' => $count,
+            'cost' => $cost,
+            'quantity' => $quantity,
+            'positionCost' => $positionCost 
+        ]);
+
     }
 
     public function placeOrder()
     {
-        $orderItems = [];
-        $cost = 0;
-        if (Session::has('cart')) {
-            $orderItems = Session::get('cart', []);
-            foreach ($orderItems as &$item) {
-                $product = Product::where('id', $item['product_id'])->first();
-                $item['name'] = $product->name;
-                $item['price'] = $product->price;
-                $item['path_img'] = $product->path_img;
-                $cost += $item['price'] * $item['quantity'];
-            }
-            unset($item);
-        }
+        $data = $this->cost();
+        $cost = $data['cost'];
+        $orderItems = $data['orderItems'];
         return view('buy', compact('orderItems', 'cost'));
     }
 

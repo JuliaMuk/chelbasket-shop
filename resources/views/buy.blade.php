@@ -1,5 +1,5 @@
 @push('vite')
-    @vite('resources/css/buy.css')
+    @vite(['resources/css/buy.css', 'resources/js/basket.js'])
 @endpush
 
 <x-main-layout>
@@ -38,17 +38,17 @@
                             {{ $item['characteristic']}}
                             </div>
                         </div>
-                        <div class="product-count">
-                                <a href="{{ route('order.minus-item',['product_id' => $item['product_id'],'characteristic' => $item['characteristic']]) }}" class="count-change">-</a> {{$item['quantity']}} <a href="{{ route('order.plus-item', ['product_id' => $item['product_id'],'characteristic' => $item['characteristic']]) }}" class="count-change">+</a>
+                        <div class="product-count" data-id="{{ $item['product_id']}}" data-characteristic="{{ $item['characteristic'] }}">
+                                <a href="{{ route('order.minus-item',['product_id' => $item['product_id'],'characteristic' => $item['characteristic']]) }}" class="count-change count-change-minus">-</a> <span>{{$item['quantity']}}</span> <a href="{{ route('order.plus-item', ['product_id' => $item['product_id'],'characteristic' => $item['characteristic']]) }}" class="count-change count-change-plus">+</a>
                             </div>
                         <div class="product-price">
                         {{ $item['price']*$item['quantity'] }}
                         </div>
-                        <form action="{{route('order.remove-item')}}" method="POST">
+                        <form action="{{route('order.remove-item')}}" method="POST" class="removeFromCartForm">
                                 @method('delete')
                                 @csrf
-                                <input type="hidden" name='product_id' value="{{$item['product_id']}}">
-                                <input type="hidden" name='characteristic' value="{{$item['characteristic']}}">
+                                <input type="hidden" name='product_id' id='product_id' value="{{$item['product_id']}}">
+                                <input type="hidden" name='characteristic' id='characteristic' value="{{$item['characteristic']}}">
                                 <button type="submit" id="remove-product">
                                     <img src="img/icons/trashcan.svg" alt="Удалить">
                                 </button>
