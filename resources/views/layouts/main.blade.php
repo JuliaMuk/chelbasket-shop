@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $title }}</title>
-    
+
     <meta name="description" content="{{ $description ?? 'Челбаскет - магазин футболок, майок, мячей, кофт и сувениров' }}">
     <meta name="keywords" content="{{ $keywords ?? 'Челбаскет, футболки, майки, мячи, кофты, сувениры' }}">
-   
+
     @vite(['resources/css/header-footer.css', 'resources/js/app.js'])
     @stack('vite')
 </head>
@@ -42,13 +42,12 @@
 
                 <a href="{{ route('basket') }}">
                     <img src="/img/icons/basket.svg" alt="bag">
+                    @if (session()->has('count') && session('count') > 0)
                     <div class='basket-count'>
-                        @if (session()->has('count') )
-                        @if (session('count') > 0)
                         {{ session('count') }}
-                        @endif
-                        @endif
                     </div>
+                    @endif
+              
                 </a>
 
             </div>
@@ -86,7 +85,7 @@
         <div class="down-footer">
             <div class="down-footer-container">
                 <div>
-                    <p>2025</p>
+                    <p>2026</p>
                 </div>
                 <div class="under">
                     <a href="#">Политика конфиденциальности</a>
@@ -100,5 +99,4 @@
         </div>
     </footer>
 </body>
-
 </html>

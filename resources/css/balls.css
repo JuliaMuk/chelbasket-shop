@@ -161,3 +161,31 @@
     color: inherit;
     display: block;
 }
+
+/* Хлебные крошки */
+.nav-menu {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  
+  .nav-items {
+    display: flex;
+    gap: 10px;
+    font-size: 16px;
+  }
+  
+  .nav-item {
+    list-style: none;
+    cursor: default;
+  }
+  
+  .nav-item a {
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  .nav-item a:hover {
+    color: #f39200;
+  }

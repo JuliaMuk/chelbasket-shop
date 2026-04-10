@@ -17,6 +17,14 @@
         </x-slot:keywords>
     <div class="main">
         <div class="width">
+            <!-- Хлебные крошки -->
+            <nav class="nav-menu">
+                <ul class="nav-items">
+                    <li class="nav-item"><a href="{{ route('home') }}">Главная</a></li>
+                    <li class="nav-item">/</li>
+                    <li class="nav-item"><a href="{{ route('categories') }}">Каталог</a></li>
+                </ul>
+            </nav>
             <h1 class="title-catalog">{{ $category->name ?? 'Новая коллекция' }}</h1>
 
             

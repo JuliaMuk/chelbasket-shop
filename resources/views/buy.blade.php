@@ -24,7 +24,11 @@
                 @foreach ($orderItems as $item)
                     <div class="product">
                         <div class="product-image">
-                            <img src="{{ asset('storage/'. $item['path_img'])  }}" alt="">
+                        @isset($item['path_img'])
+                                    <img src="{{ asset('storage/'. $item['path_img']) }}" alt="{{ $item['name'] }}">
+                                @else
+                                    <img src="{{ asset('img/no-image.webp') }}" alt="{{ $item['name'] }}">
+                                @endisset   
                         </div>
                         <div class="product-info">
                             <div class="product-name">
@@ -35,7 +39,7 @@
                             </div>
                         </div>
                         <div class="product-count">
-                                <a href="{{ route('order.minus-item',['product_id' => $item['product_id']]) }}" class="count-change">-</a> {{$item['quantity']}} <a href="{{ route('order.plus-item', ['product_id' => $item['product_id']]) }}" class="count-change">+</a>
+                                <a href="{{ route('order.minus-item',['product_id' => $item['product_id'],'characteristic' => $item['characteristic']]) }}" class="count-change">-</a> {{$item['quantity']}} <a href="{{ route('order.plus-item', ['product_id' => $item['product_id'],'characteristic' => $item['characteristic']]) }}" class="count-change">+</a>
                             </div>
                         <div class="product-price">
                         {{ $item['price']*$item['quantity'] }}
@@ -44,6 +48,7 @@
                                 @method('delete')
                                 @csrf
                                 <input type="hidden" name='product_id' value="{{$item['product_id']}}">
+                                <input type="hidden" name='characteristic' value="{{$item['characteristic']}}">
                                 <button type="submit" id="remove-product">
                                     <img src="img/icons/trashcan.svg" alt="Удалить">
                                 </button>

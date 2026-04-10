@@ -2,6 +2,7 @@
 
 body {
 font-family: "PaluiSPDemo", sans-serif;
+overflow-x: hidden;
 }
 
 .bold {

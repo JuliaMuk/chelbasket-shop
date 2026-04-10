@@ -39,24 +39,28 @@ class OrderController extends Controller
             'characteristic' => ['nullable', 'string', 'max:255'],
         ]);
         $product = Product::where('id', $request->product_id)->first();
-        if(!$product->isAvailable())
-        {
+        if (!$product->isAvailable()) {
             abort(403);
         }
         $orderItems = [];
         if (Session::has('cart')) {
             $orderItems = Session::get('cart', []);
-            $key = array_search($request->product_id, array_column($orderItems, 'product_id'));
-
-            if ($key !== false) {
+            $foundKey = null;
+            foreach ($orderItems as $key => $item) {
+                if ($item['product_id'] === $request->product_id && $item['characteristic'] == $request->characteristic) {
+                    $foundKey = $key;
+                    break;
+                }
+            }
+            if (!is_null($foundKey)) {
                 $orderItems[$key]['quantity']++;
             } else {
-
-                array_push($orderItems, ['product_id' => $request->product_id, 'quantity' => 1, 'characteristic' => $request->characteristic || '']);
+                array_push($orderItems, ['product_id' => $request->product_id, 'quantity' => 1, 'characteristic' => $request->characteristic]);
             }
         } else {
-            array_push($orderItems, ['product_id' => $request->product_id, 'quantity' => 1, 'characteristic' => $request->characteristic || '']);
+            array_push($orderItems, ['product_id' => $request->product_id, 'quantity' => 1, 'characteristic' => $request->characteristic]);
         }
+
         Session::put('cart', $orderItems);
         if (Session::has('count')) {
             $count = Session::get('count');
@@ -72,17 +76,24 @@ class OrderController extends Controller
     {
         $validated = $request->validate([
             'product_id' => ['required', 'exists:products,id'],
+            'characteristic' => ['nullable', 'string', 'max:255'],
         ]);
         if (Session::has('cart')) {
             $orderItems = Session::get('cart', []);
             if (Session::has('count')) {
                 $count = Session::get('count');
-                $key = array_search($request->product_id, array_column($orderItems, 'product_id'));
-                $count -= $orderItems[$key]['quantity'];
+                $foundKey = null;
+                foreach ($orderItems as $key => $item) {
+                    if ($item['product_id'] === $request->product_id && $item['characteristic'] == $request->characteristic) {
+                        $foundKey = $key;
+                        break;
+                    }
+                }
+                $count -= $orderItems[$foundKey]['quantity'];
                 Session::put('count', $count);
             }
             $orderItems = array_filter($orderItems, function ($item) use ($request) {
-                return $item['product_id'] != $request->product_id;
+                return !($item['product_id'] == $request->product_id && $item['characteristic'] == $request->characteristic);
             });
             $orderItems = array_values($orderItems);
             Session::put('cart', $orderItems);
@@ -94,11 +105,18 @@ class OrderController extends Controller
     {
         $validated = $request->validate([
             'product_id' => ['required', 'exists:products,id'],
+            'characteristic' => ['nullable', 'string', 'max:255'],
         ]);
         if (Session::has('cart')) {
             $orderItems = Session::get('cart', []);
-            $key = array_search($request->product_id, array_column($orderItems, 'product_id'));
-            if ($orderItems[$key]['quantity'] == 1) {
+            $foundKey = null;
+            foreach ($orderItems as $key => $item) {
+                if ($item['product_id'] === $request->product_id && $item['characteristic'] == $request->characteristic) {
+                    $foundKey = $key;
+                    break;
+                }
+            }
+            if ($orderItems[$foundKey]['quantity'] == 1) {
                 return $this->removeItem($request);
             } else {
                 if (Session::has('count')) {
@@ -107,11 +125,11 @@ class OrderController extends Controller
                     Session::put('count', $count);
                 }
 
-                if ($orderItems[$key]['quantity'] == 1) {
+                if ($orderItems[$foundKey]['quantity'] == 1) {
                     return $this->removeItem($request);
                 }
 
-                $orderItems[$key]['quantity']--;
+                $orderItems[$foundKey]['quantity']--;
             }
             Session::put('cart', $orderItems);
         }
@@ -122,16 +140,23 @@ class OrderController extends Controller
     {
         $validated = $request->validate([
             'product_id' => ['required', 'exists:products,id'],
+            'characteristic' => ['nullable', 'string', 'max:255'],
         ]);
         if (Session::has('cart')) {
             $orderItems = Session::get('cart', []);
-            $key = array_search($request->product_id, array_column($orderItems, 'product_id'));
+            $foundKey = null;
+            foreach ($orderItems as $key => $item) {
+                if ($item['product_id'] === $request->product_id && $item['characteristic'] == $request->characteristic) {
+                    $foundKey = $key;
+                    break;
+                }
+            }
             if (Session::has('count')) {
                 $count = Session::get('count');
                 $count++;
                 Session::put('count', $count);
             }
-            $orderItems[$key]['quantity']++;
+            $orderItems[$foundKey]['quantity']++;
             Session::put('cart', $orderItems);
         }
         return redirect()->back();
@@ -183,7 +208,7 @@ class OrderController extends Controller
                 $orderItem->characteristic_value = $item['characteristic'];
                 $orderItem->item_price = $product->price;
                 $orderItem->save();
-                $cost += $product->price* $item['quantity'];
+                $cost += $product->price * $item['quantity'];
             }
             Session::forget('cart');
         }

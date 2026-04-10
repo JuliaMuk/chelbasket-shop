@@ -70,20 +70,28 @@
             <div class="block-cards-right">
 
                 <div class="cards-up">
+                <a href="{{ route('card', ['product' => $products[0]->slug]) }}" class="card-link">
                     <x-card 
                         :product="$products[0]"
                     />
+                </a>
+                <a href="{{ route('card', ['product' => $products[1]->slug]) }}" class="card-link">
                     <x-card 
                         :product="$products[1]"
                     />
+                </a>
                 </div>
                 <div class="cards-down">
+                <a href="{{ route('card', ['product' => $products[2]->slug]) }}" class="card-link">
                     <x-card 
                         :product="$products[2]"
                     />
+                </a>
+                <a href="{{ route('card', ['product' => $products[3]->slug]) }}" class="card-link">
                     <x-card 
                         :product="$products[3]"
                     />
+                </a>
                 </div>
             </div>
         </div>
