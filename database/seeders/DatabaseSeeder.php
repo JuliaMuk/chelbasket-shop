@@ -19,12 +19,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        Category::create(['name' => 'Мячи','slug' => Str::slug('Мячи', '-'),'path_img' => 'img/catalog/баннер7.svg']);   
-        Category::create(['name' => 'Кофты','slug' => Str::slug('Кофты', '-'),'path_img' => 'img/catalog/баннер2.svg']);
-        Category::create(['name' => 'Футболки','slug' => Str::slug('Футболки', '-'),'path_img' => 'img/catalog/баннер3.svg']);
-        Category::create(['name' => 'Майки','slug' => Str::slug('Майки', '-'),'path_img' => 'img/catalog/баннер5.svg']);
-        Category::create(['name' => 'Форма','slug' => Str::slug('Форма', '-'),'path_img' => 'img/catalog/баннер6.svg']);
-        Category::create(['name' => 'Сувениры','slug' => Str::slug('Сувениры', '-'),'path_img' => 'img/catalog/баннер4.svg']);
+        Category::create(['name' => 'Мячи','slug' => Str::slug('Мячи', '-'),'path_img' => 'category-images/banner7.svg']);
+        Category::create(['name' => 'Кофты','slug' => Str::slug('Кофты', '-'),'path_img' => 'category-images/banner2.svg']);
+        Category::create(['name' => 'Футболки','slug' => Str::slug('Футболки', '-'),'path_img' => 'category-images/banner3.svg']);
+        Category::create(['name' => 'Майки','slug' => Str::slug('Майки', '-'),'path_img' => 'category-images/banner5.svg']);
+        Category::create(['name' => 'Форма','slug' => Str::slug('Форма', '-'),'path_img' => 'category-images/banner6.svg']);
+        Category::create(['name' => 'Сувениры','slug' => Str::slug('Сувениры', '-'),'path_img' => 'category-images/banner4.svg']);
 
         ///Мячи(1) 
         Product::create([

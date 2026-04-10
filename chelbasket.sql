@@ -101,12 +101,12 @@ CREATE TABLE IF NOT EXISTS `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `slug`, `path_img`, `created_at`, `updated_at`) VALUES
-(1, 'Мячи', 'miaci', 'category-images/01KMWZG5ANS43REDBJCFD14SBX.svg', '2026-03-29 08:09:38', '2026-03-29 09:20:52'),
-(2, 'Кофты', 'kofty', 'category-images/01KMWZH5HHZFETQK9W7N72SP8E.svg', '2026-03-29 08:09:38', '2026-03-29 09:21:25'),
-(3, 'Футболки', 'futbolki', 'img/catalog/баннер3.svg', '2026-03-29 08:09:38', '2026-03-29 08:09:38'),
-(4, 'Майки', 'maiki', 'img/catalog/баннер5.svg', '2026-03-29 08:09:38', '2026-03-29 08:09:38'),
-(5, 'Форма', 'forma', 'img/catalog/баннер6.svg', '2026-03-29 08:09:38', '2026-03-29 08:09:38'),
-(6, 'Сувениры', 'suveniry', 'img/catalog/баннер4.svg', '2026-03-29 08:09:38', '2026-03-29 08:09:38');
+(1, 'Мячи', 'miaci', 'category-images/banner7.svg', '2026-03-29 08:09:38', '2026-03-29 09:20:52'),
+(2, 'Кофты', 'kofty', 'category-images/banner2.svg', '2026-03-29 08:09:38', '2026-03-29 09:21:25'),
+(3, 'Футболки', 'futbolki', 'category-images/banner3.svg', '2026-03-29 08:09:38', '2026-03-29 08:09:38'),
+(4, 'Майки', 'maiki', 'category-images/banner5.svg', '2026-03-29 08:09:38', '2026-03-29 08:09:38'),
+(5, 'Форма', 'forma', 'category-images/banner6.svg', '2026-03-29 08:09:38', '2026-03-29 08:09:38'),
+(6, 'Сувениры', 'suveniry', 'category-images/banner4.svg', '2026-03-29 08:09:38', '2026-03-29 08:09:38');
 
 -- --------------------------------------------------------
 
