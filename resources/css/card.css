@@ -1,21 +1,67 @@
 @import "fonts.css";
 
-.main {
-  padding: 200px 0;
+body {
+  background-image: url("../../public/img/home/back-main.png");
+  background-repeat: repeat-y;
+  background-size: 100%;
+  background-position: center top;
+  background-attachment: fixed;
   font-family: "VisbyBold", sans-serif;
   color: #fbfbfb;
 }
 
 .main-product {
+  margin-top: 200px;
+  margin-bottom: 200px;
   display: flex;
   justify-content: center;
 }
 
 .width {
-  max-width: 1500px;
+  max-width: 90%;
   margin: 0 auto;
   padding: 0 20px;
   width: 100%;
+}
+
+@media (max-width: 768px) {
+  .width {
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .width {
+    padding: 0 10px;
+  }
+}
+
+/* Хлебные крошки */
+.nav-menu {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.nav-items {
+  display: flex;
+  gap: 10px;
+  font-size: 16px;
+}
+
+.nav-item {
+  list-style: none;
+  cursor: default;
+}
+
+.nav-item a {
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.nav-item a:hover {
+  color: #f39200;
 }
 
 /* Основной контейнер товара */
@@ -47,7 +93,6 @@
   max-height: 450px;
 }
 
-
 /* Миниатюры слева - вертикально */
 .gallery-thumbs-vertical {
   display: flex;
@@ -62,21 +107,6 @@
   flex: 1;
   max-width: calc(100% - 95px);
   max-height: 100%;
-}
-
-/* ===== Слайдер отзывов ===== */
-.reviews-slider {
-    position: relative;
-}
-
-.swiper-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-}
-
-.swiper-slide {
-    width: auto;
 }
 
 .rating-badge {
@@ -133,16 +163,6 @@
   padding: 10px;
   box-sizing: border-box;
   background: transparent;
-}
-
-
-
-.reviews-button-prev {
-    left: -15px;
-}
-
-.reviews-button-next {
-    right: -15px;
 }
 
 .thumb {
@@ -276,12 +296,18 @@
 }
 
 .size-btn:hover {
-  background-color: #F35D00;
+  background-color: #f39200;
 }
 
 .size-btn.active {
-  background-color: #F35D00;
+  background-color: #f39200;
   border-color: #fff;
+}
+
+.size-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 .size-range {
@@ -330,7 +356,7 @@
 }
 
 .btn-primary:hover {
-  background-color: #F35D00;
+  background-color: #f39200;
 }
 
 .btn-secondary {
@@ -347,10 +373,7 @@
 
 /* Отзывы */
 .reviews-section {
-  margin-top: 100px;
   padding-top: 80px;
-  padding-left: 40px;
-  padding-right: 40px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
 }
@@ -411,6 +434,8 @@
 
 .swiper-button-prev,
 .swiper-button-next {
+  position: absolute;
+  top: -60px;
   width: 40px;
   height: 40px;
   background-color: transparent;
@@ -421,6 +446,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
   font-size: 20px;
   font-weight: normal;
   min-width: 40px;
@@ -428,6 +455,16 @@
   font-family: "VisbySemibold", sans-serif;
 }
 
+/* Completely override button content to ensure only our arrows show */
+.swiper-button-prev,
+.swiper-button-next {
+  font-size: 20px;
+  font-weight: normal;
+  align-items: center;
+  justify-content: center;
+  font-family: "VisbySemibold", sans-serif;
+  position: relative;
+}
 
 /* Hide default pseudo-elements and SVG icons */
 .swiper-button-prev::after,
@@ -575,11 +612,11 @@
 }
 
 .modal-size-btn:hover {
-  background-color: #F35D00;
+  background-color: #f39200;
 }
 
 .modal-size-btn.selected {
-  background-color: #F35D00;
+  background-color: #f39200;
   border-color: #191919;
 }
 
@@ -698,6 +735,16 @@
     gap: 10px;
   }
 
+  .swiper-button-prev,
+  .swiper-button-next {
+    width: 36px;
+    height: 36px;
+    top: -55px;
+  }
+
+  .swiper-button-prev {
+    left: -20px;
+  }
 
   .swiper-button-next {
     right: -20px;
@@ -710,7 +757,7 @@
   .reviews-button-next {
     right: -20px;
   }
-  
+
   /* Completely override button content to ensure only our arrows show */
   .swiper-button-prev,
   .swiper-button-next {
@@ -721,23 +768,23 @@
     font-family: "VisbySemibold", sans-serif;
     position: relative;
   }
-  
+
   /* Hide default pseudo-elements and SVG icons */
   .swiper-button-prev::after,
   .swiper-button-next::after {
     display: none;
   }
-  
+
   .swiper-button-prev svg,
   .swiper-button-next svg {
     display: none !important;
   }
-  
+
   /* Display our custom arrows using ::before pseudo-element */
   .swiper-button-prev::before {
     content: "";
   }
-  
+
   .swiper-button-next::before {
     content: "";
   }
@@ -800,7 +847,7 @@
   .swiper-button-next {
     right: -15px;
   }
-  
+
   .reviews-button-prev {
     left: -15px;
   }
@@ -808,7 +855,7 @@
   .reviews-button-next {
     right: -15px;
   }
-  
+
   /* Completely override button content to ensure only our arrows show */
   .swiper-button-prev,
   .swiper-button-next {
@@ -819,25 +866,24 @@
     font-family: "VisbySemibold", sans-serif;
     position: relative;
   }
-  
+
   /* Hide default pseudo-elements and SVG icons */
   .swiper-button-prev::after,
   .swiper-button-next::after {
     display: none;
   }
-  
+
   .swiper-button-prev svg,
   .swiper-button-next svg {
     display: none !important;
   }
-  
+
   /* Display our custom arrows using ::before pseudo-element */
   .swiper-button-prev::before {
     content: "←";
   }
-  
+
   .swiper-button-next::before {
     content: "→";
   }
 }
-

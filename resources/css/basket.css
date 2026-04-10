@@ -40,27 +40,33 @@
 .product {
     display: flex;
     justify-content: space-between;
-    gap: 75px;
+    align-items: center;
+    gap: 20px;
     padding: 20px;
     background-color: white;
     color: #111;
+    position: relative;
 }
 
 .product-info {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    gap: 20px;
+    align-items: flex-start;
+    gap: 10px;
+    flex: 1;
 }
 
 .product-size {
-    text-align: center;
+    text-align: left;
+    font-size: 14px;
+    color: #666;
 }
 
 .product-count {
     display: flex;
     gap: 4px;
+    align-items: center;
 }
 
 .count-change {
@@ -72,15 +78,27 @@
     border: 1px solid #111;
     background-color: transparent;
     color: #111;
+    text-decoration: none;
 }
 
-#remove-product {
-    position: absolute;
-    margin-top: 90px;
-    margin-left: 650px;
+.remove-product-btn {
     border: none;
     background-color: transparent;
     cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s;
+}
+
+.remove-product-btn:hover {
+    opacity: 0.6;
+}
+
+.remove-product-btn img {
+    width: 20px;
+    height: 20px;
 }
 
 .basket-order {

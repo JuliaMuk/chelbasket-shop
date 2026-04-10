@@ -53,10 +53,10 @@
 
             </div>
         </div>
-        @include('layouts.flash-messages')
     </header>
 
     <main>
+        @include('layouts.flash-messages')
         {{ $slot }}
     </main>
     <footer class="footer">
@@ -65,7 +65,7 @@
                 <div class="left-footer">
                     <form action="{{route('subscribe')}}" method="POST">
                         @csrf
-                        <img src="img/icons/Logo.svg" alt="logo">
+                        <img src="/img/icons/Logo.svg" alt="logo">
                         <p>Станьте тем, кто первый узнает об обновлениях в коллекциях</p>
                         <input class="footer-input-text" type="text" name="email" placeholder="E-mail" required>
                         <p class="label-input">Указывая E-mail вы соглашаетесь с политикой конфиденциальности</p>
