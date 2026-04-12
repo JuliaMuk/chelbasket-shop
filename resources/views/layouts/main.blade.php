@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $title }}</title>
+    <title>{{ $title ?? 'Челбаскет'}}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="{{ $description ?? 'Челбаскет - магазин футболок, майок, мячей, кофт и сувениров' }}">
     <meta name="keywords" content="{{ $keywords ?? 'Челбаскет, футболки, майки, мячи, кофты, сувениры' }}">
@@ -19,7 +19,7 @@
     <header class="header">
         <div class="container-header">
             <div class="header-left">
-                <img src="/img/icons/Logo.svg" alt="logo" class="logo">
+                <img src="/img/icons/logo.webp" alt="logo" class="logo">
             </div>
             <nav class="header-menu">
                 <ul>
@@ -66,7 +66,7 @@
                 <div class="left-footer">
                     <form action="{{route('subscribe')}}" method="POST">
                         @csrf
-                        <img src="/img/icons/Logo.svg" alt="logo">
+                        <img src="/img/icons/logo.webp" alt="logo">
                         <p>Станьте тем, кто первый узнает об обновлениях в коллекциях</p>
                         <input class="footer-input-text" type="text" name="email" placeholder="E-mail" required>
                         <p class="label-input">Указывая E-mail вы соглашаетесь с политикой конфиденциальности</p>

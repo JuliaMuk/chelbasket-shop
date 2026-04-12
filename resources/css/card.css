@@ -1,7 +1,7 @@
 @import "fonts.css";
 
 body {
-  background-image: url("../../public/img/home/back-main.png");
+  background-image: url("../../public/img/home/back-main.webp");
   background-repeat: repeat-y;
   background-size: 100%;
   background-position: center top;

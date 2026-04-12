@@ -33,10 +33,10 @@
                         <h4>Официальный мерч</h4>
                         <h4><span class="orange">Сезон 25-26</span></h4>
                     </div>
-                    <img src="/img/home/1-1.png" alt="мужчина с кофтой">
+                    <img src="/img/home/1-1.webp" alt="мужчина с кофтой">
                 </div>
                 <div class="column">
-                    <img src="/img/home/1-2.png" alt="мужчина">
+                    <img src="/img/home/1-2.webp" alt="мужчина">
                 </div>
             </div>
             <a href="#" class="more">узнать подробнее</a>
@@ -44,8 +44,8 @@
         <div class="season-form">
             <div class="block-info season-info">
                 <div class="column season-form-left">
-                    <img src="/img/home/2-1.png" alt="">
-                    <img src="/img/home/2-2.png" alt="">
+                    <img src="/img/home/2-1.webp" alt="">
+                    <img src="/img/home/2-2.webp" alt="">
                 </div>
                 <div class="column">
                     <div class="season-form-info">
@@ -56,7 +56,7 @@
                         Пошив по индвидуальным размерам и возможностью нанесения
                         фамилии и номера
                     </p>
-                    <img src="/img/home/2-3.png" alt="">
+                    <img src="/img/home/2-3.webp" alt="">
                 </div>
             </div>
             <a href="#" class="more">узнать подробнее</a>
@@ -70,24 +70,24 @@
             <div class="block-cards-right">
 
                 <div class="cards-up">
-                <a href="{{ route('card', ['product' => $products[0]->slug]) }}" class="card-link">
+                <a href="{{ route('card', ['product' => $products[0]]) }}" class="card-link">
                     <x-card 
                         :product="$products[0]"
                     />
                 </a>
-                <a href="{{ route('card', ['product' => $products[1]->slug]) }}" class="card-link">
+                <a href="{{ route('card', ['product' => $products[1]]) }}" class="card-link">
                     <x-card 
                         :product="$products[1]"
                     />
                 </a>
                 </div>
                 <div class="cards-down">
-                <a href="{{ route('card', ['product' => $products[2]->slug]) }}" class="card-link">
+                <a href="{{ route('card', ['product' => $products[2]]) }}" class="card-link">
                     <x-card 
                         :product="$products[2]"
                     />
                 </a>
-                <a href="{{ route('card', ['product' => $products[3]->slug]) }}" class="card-link">
+                <a href="{{ route('card', ['product' => $products[3]]) }}" class="card-link">
                     <x-card 
                         :product="$products[3]"
                     />

@@ -16,7 +16,7 @@
                     </a>
                 @endforeach     
                 <a href="{{ route('catalog', ['category' => 'new-collection']) }}" class="card">
-                        <img src="{{ asset('storage/category-images/news.svg') }}" alt="новая коллекция">
+                        <img src="{{ asset('storage/category-images/news.webp') }}" alt="новая коллекция">
                 </a>              
             </div>
       </div>

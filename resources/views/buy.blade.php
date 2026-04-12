@@ -14,10 +14,10 @@
                     @csrf
                     <input type="text" name="customer_name" placeholder="ФИО*" required>
                     <input type="email" name="email" placeholder="Эл.почта*"required>
-                    <input type="tel" name="phone" placeholder="Номер телефона*" required>
+                    <input type="tel"  name="phone" placeholder="Номер телефона*" x-data x-mask="+7 (999) 999-99-99" placeholder="+7 (___) ___-__-__" required>
                     <input type="text" name="city" placeholder="Город*" required>
                     <input type="text" name="address" placeholder="Пункт получения*" required>
-                    <input type="text" name="comment" placeholder="Комментарий*" required>
+                    <input type="text" name="comment" placeholder="Комментарий" >
                     <button id="place-an-order" type="submit">ОФОРМИТЬ ЗАКАЗ</button>
                 </form>
                 <div class="products-list">

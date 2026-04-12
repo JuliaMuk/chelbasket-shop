@@ -5,16 +5,8 @@
     @vite('app/Models/Product.php')
 @endpush
 
-<x-main-layout>
-        <x-slot:title>
-            Мячи
-        </x-slot:title>
-        <x-slot:description>
-            {{ $category->meta_description ?? 'Новая коллекция' }}
-        </x-slot:description>
-        <x-slot:keywords>
-            {{ $category->keywords ?? 'Челбаскет, футболки, майки, мячи, кофты, сувениры' }}
-        </x-slot:keywords>
+<x-main-layout title="{{$category->name ?? 'Новая коллекция'}}" keywords="{{ $category->keywords ?? 'Челбаскет, футболки, майки, мячи, кофты, сувениры' }}" description="{{$category->meta_description ?? 'Новая коллекция' }}" >
+        
     <div class="main">
         <div class="width">
             <!-- Хлебные крошки -->
@@ -36,7 +28,7 @@
                     
 
                     @foreach ($products as $product)   
-                            <a href="{{ route('card', ['product' => $product->slug]) }}" class="card-link">
+                            <a href="{{ route('card', ['product' => $product]) }}" class="card-link">
                                 <x-card :product="$product" />
                             </a>
                     @endforeach

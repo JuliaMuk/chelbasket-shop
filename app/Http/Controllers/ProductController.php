@@ -25,8 +25,7 @@ class ProductController extends Controller
         $products = Product::where('category_id', $category->id)->get();
         return view('catalog', compact('products', 'category'));
     }
-    public function show($product){
-        $product = Product::where('slug', $product)->first();
+    public function show(Product $product){
         return view('card', compact('product'));
     }    
 }

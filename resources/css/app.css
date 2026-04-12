@@ -48,13 +48,14 @@ overflow-x: hidden;
     margin-top: 90px;
     min-height: 741px;
     width: 100%;
-    background-image: url("../../public/img/home/back.svg");
+    background-image: url("../../public/img/home/back.webp");
     background-color: #000000d8;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     color: #ffffff;
     text-align: center;
+    
     p {
         font-size: 30px;
         margin: 0;

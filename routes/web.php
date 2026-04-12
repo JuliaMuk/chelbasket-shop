@@ -20,7 +20,7 @@ Route::get('/', [ProductController::class,'home'])->name('home');
 
 Route::get('/categories', [ProductController::class,'categories'])->name('categories');
 Route::get('/catalog/{category}', [ProductController::class,'catalog'])->name('catalog');
-Route::get('/products/{product}',[ProductController::class,'show'])->name('card');
+Route::get('/products/{product:slug}',[ProductController::class,'show'])->name('card');
 Route::post('/order/add-item',[OrderController::class,'addItem'])->name('order.add-item');
 Route::get('/basket', [OrderController::class, 'show'])->name('basket');
 Route::delete('/order/item', [OrderController::class, 'removeItem'])->name('order.remove-item');

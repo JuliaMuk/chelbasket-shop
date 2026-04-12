@@ -4,16 +4,8 @@
 
 
 
-<x-main-layout>
-  <x-slot:title>
-    {{ $product->name ?? 'Челбаскет' }}
-  </x-slot:title>
-  <x-slot:description>
-    {{ $product->meta_description ?? 'Новая коллекция' }}
-  </x-slot:description>
-  <x-slot:keywords>
-    {{ $product->keywords ?? 'Челбаскет, футболки, майки, мячи, кофты, сувениры' }}
-  </x-slot:keywords>
+<x-main-layout title="{{ $product->name ?? 'Челбаскет' }}" keywords="{{ $product->keywords ?? 'Челбаскет, футболки, майки, мячи, кофты, сувениры' }}" description="{{ $product->meta_description ?? 'Челбаскет - магазин футболок, майок, мячей, кофт и сувениров' }}" >
+
 
   <div class="main-product">
     <div class="width">
@@ -42,10 +34,11 @@
               @else
               <div class="thumb thumb-active" style="background-image: url('{{ asset('img/no-image.webp' ) }}')"></div>
               @endisset
-
+              @isset($product->extra_images)
               @foreach ($product->extra_images as $key => $value)
               <div class="thumb" style="background-image: url('{{ asset('storage/'. $value) }}')"></div>
               @endforeach
+              @endisset
             </div>
 
             <!-- Главный слайдер -->
@@ -60,11 +53,13 @@
                     <img src="{{ asset('img/no-image.webp') }}" alt="{{ $product->name }}">
                     @endisset
                   </div>
+                  @isset($product->extra_images)
                   @foreach ($product->extra_images as $key => $value)
                   <div class="swiper-slide">
                     <img src="{{ asset('storage/' . $value) }}" alt="{{ $product->name }}">
                   </div>
                   @endforeach
+                  @endisset
                 </div>
               </div>
               <div class="rating-badge">
