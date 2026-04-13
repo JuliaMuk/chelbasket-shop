@@ -17,14 +17,13 @@ body {
 .width{
     max-width: max-content;
     margin: 0 auto;
-    margin-top: 200px;
     padding: 0 20px;
     margin-bottom: 200px;
 }
 
 .title-catalog {
   font-size: 65px;
-  margin: 80px 0;
+  margin: 40px 0;
   font-weight: normal;
   text-transform: uppercase;
   font-family: "PaluiSPDemo", sans-serif;

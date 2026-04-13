@@ -65,7 +65,7 @@
 
 .product-count {
     display: flex;
-    gap: 4px;
+    gap: 10px;
     align-items: center;
 }
 
@@ -73,27 +73,59 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 20px;
-    height: 20px;
-    border: 1px solid #111;
+    width: 32px;
+    height: 32px;
+    border: 2px solid #111;
     background-color: transparent;
     color: #111;
     text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    line-height: 1;
+    font-family: 'VisbyBold', sans-serif;
+}
+
+.count-change:hover,
+.count-change:focus {
+    background-color: #F39200;
+    border-color: #F39200;
+    color: #FFF;
+    transform: scale(1.1);
+    outline: none;
+    box-shadow: 0 2px 6px rgba(243, 146, 0, 0.4);
+}
+
+.count-change:active {
+    transform: scale(0.95);
 }
 
 .remove-product-btn {
     border: none;
     background-color: transparent;
     cursor: pointer;
-    padding: 5px;
+    padding: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: opacity 0.2s;
+    transition: all 0.2s;
 }
 
 .remove-product-btn:hover {
     opacity: 0.6;
+    background-color: rgba(255, 0, 0, 0.1);
+    transform: scale(1.1);
+}
+
+.remove-product-btn:focus {
+    outline: 2px solid #F39200;
+    outline-offset: 2px;
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+.remove-product-btn:active {
+    transform: scale(0.9);
 }
 
 .remove-product-btn img {
@@ -118,11 +150,29 @@
     background-color: #F39200;
     color: #FFF;
     border: none;
-    transition: all 0.2s;
+    transition: all 0.3s ease;
     font-family: 'PaluiSPDemo', sans-serif;
+    font-size: 18px;
+    cursor: pointer;
 }
+
 #place-an-order:hover {
-    background-color: #F35D00;;
+    background-color: #F35D00;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(243, 93, 0, 0.4);
+}
+
+#place-an-order:focus {
+    background-color: #F35D00;
+    outline: 3px solid rgba(243, 146, 0, 0.5);
+    outline-offset: 2px;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(243, 93, 0, 0.4);
+}
+
+#place-an-order:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(243, 93, 0, 0.3);
 }
 
 

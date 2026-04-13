@@ -57,11 +57,20 @@ body {
   color: #ffffff;
   text-decoration: none;
   cursor: pointer;
-  transition: color 0.3s;
+  transition: all 0.3s ease;
+  padding: 4px 8px;
+  border-radius: 4px;
 }
 
 .nav-item a:hover {
   color: #f39200;
+  background-color: rgba(243, 146, 0, 0.1);
+}
+
+.nav-item a:focus {
+  color: #f39200;
+  outline: 2px solid #f39200;
+  outline-offset: 2px;
 }
 
 /* Основной контейнер товара */
@@ -127,12 +136,17 @@ body {
   font-weight: bold;
   z-index: 10;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+  font-family: "VisbySemibold", sans-serif;
 }
 
 .rating-badge .star {
   font-size: 16px;
   color: #f39200;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+}
+
+.rating-badge span {
+  font-family: "VisbySemibold", sans-serif;
 }
 
 .product-main-slider {
@@ -201,7 +215,6 @@ body {
   font-weight: normal;
   min-width: 120px;
   box-sizing: border-box;
-  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -250,13 +263,17 @@ body {
 
 .rating-count {
   color: #999;
+    font-family: "VisbyHeavy", sans-serif;
+
 }
 
 .product-price {
   font-size: 28px;
-  font-family: "PaluiSPDemo", sans-serif;
+  font-family: "VisbyHeavy", sans-serif;
   color: #fbfbfb;
   font-weight: bold;
+  letter-spacing: 0.5px;
+  line-height: 1.3;
 }
 
 /* Выбор размера */
@@ -293,6 +310,9 @@ body {
   justify-content: center;
   text-align: center;
   transition: all 0.3s;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
 }
 
 .size-btn:hover {
@@ -308,6 +328,11 @@ body {
   opacity: 0.4;
   cursor: not-allowed;
   pointer-events: none;
+}
+
+.size-btn span {
+  font-family: "VisbySemibold", sans-serif;
+  font-size: 14px;
 }
 
 .size-range {
@@ -348,6 +373,8 @@ body {
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.3s;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 .btn-primary {
@@ -356,7 +383,22 @@ body {
 }
 
 .btn-primary:hover {
-  background-color: #f39200;
+  background-color: #e08500;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(243, 146, 0, 0.4);
+}
+
+.btn-primary:focus {
+  background-color: #e08500;
+  outline: 3px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(243, 146, 0, 0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(243, 146, 0, 0.3);
 }
 
 .btn-secondary {
@@ -369,6 +411,23 @@ body {
   background-color: #f39200;
   border-color: #f39200;
   color: #191919;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(243, 146, 0, 0.3);
+}
+
+.btn-secondary:focus {
+  background-color: #f39200;
+  border-color: #f39200;
+  color: #191919;
+  outline: 3px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(243, 146, 0, 0.3);
+}
+
+.btn-secondary:active {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(243, 146, 0, 0.2);
 }
 
 /* Отзывы */
@@ -441,7 +500,6 @@ body {
   background-color: transparent;
   color: #fbfbfb;
   border: 1px solid #fbfbfb;
-  border-radius: 4px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -573,11 +631,29 @@ body {
   font-size: 28px;
   cursor: pointer;
   color: #999;
-  transition: color 0.3s;
+  transition: all 0.3s;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal-close:hover {
   color: #191919;
+  background-color: rgba(0, 0, 0, 0.05);
+  transform: rotate(90deg);
+}
+
+.modal-close:focus {
+  color: #191919;
+  outline: 2px solid #f39200;
+  outline-offset: 2px;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.modal-close:active {
+  transform: rotate(0deg) scale(0.9);
 }
 
 .modal-title {
@@ -609,6 +685,9 @@ body {
   justify-content: center;
   gap: 8px;
   transition: all 0.3s;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
 }
 
 .modal-size-btn:hover {
@@ -618,6 +697,11 @@ body {
 .modal-size-btn.selected {
   background-color: #f39200;
   border-color: #191919;
+}
+
+.modal-size-btn span {
+  font-family: "VisbySemibold", sans-serif;
+  font-size: 16px;
 }
 
 /* Модальное окно отзыва */
@@ -675,12 +759,25 @@ body {
   font-size: 32px;
   cursor: pointer;
   color: #ddd;
-  transition: color 0.3s;
+  transition: all 0.3s;
+  display: inline-block;
 }
 
 .star:hover,
 .star.active {
   color: #f39200;
+  transform: scale(1.2);
+}
+
+.star:focus {
+  color: #f39200;
+  outline: 2px solid #f39200;
+  outline-offset: 3px;
+  border-radius: 50%;
+}
+
+.star:active {
+  transform: scale(1.0);
 }
 
 .form-group textarea {
@@ -690,11 +787,17 @@ body {
   font-size: 14px;
   resize: vertical;
   box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.form-group textarea:hover {
+  border-color: #f39200;
 }
 
 .form-group textarea:focus {
   outline: none;
   border-color: #f39200;
+  box-shadow: 0 0 0 3px rgba(243, 146, 0, 0.1);
 }
 
 /* Медиа запросы */
