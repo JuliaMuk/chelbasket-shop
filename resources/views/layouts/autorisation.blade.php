@@ -12,7 +12,7 @@
     <header class="header">
         <div class="container-header">
             <div class="header-left">
-                <img src="img/icons/Logo.svg" alt="logo" class="logo">
+                <img src="img/icons/logo.webp" alt="logo" class="logo">
             </div>
             <nav class="header-menu">
                 <ul>

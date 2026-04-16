@@ -1,5 +1,5 @@
 @push('vite')
-    @vite('resources/css/app.css')
+@vite('resources/css/app.css')
 @endpush
 
 <x-main-layout>
@@ -50,7 +50,9 @@
                 <div class="column">
                     <div class="season-form-info">
                         <h3>сезонная форма</h3>
-                        <span class="orange"><h4>25-26</h4></span>
+                        <span class="orange">
+                            <h4>25-26</h4>
+                        </span>
                     </div>
                     <p>
                         Пошив по индвидуальным размерам и возможностью нанесения
@@ -65,35 +67,134 @@
         <div class="block-cards">
             <div class="block-cards-left">
                 <h3>наши товары</h3>
-                <button></button>
+                <button id="cards-change"></button>
             </div>
             <div class="block-cards-right">
 
                 <div class="cards-up">
-                <a href="{{ route('card', ['product' => $products[0]]) }}" class="card-link">
-                    <x-card 
-                        :product="$products[0]"
-                    />
-                </a>
-                <a href="{{ route('card', ['product' => $products[1]]) }}" class="card-link">
-                    <x-card 
-                        :product="$products[1]"
-                    />
-                </a>
+                    <a href="{{ route('card', ['product' => $products[0]]) }}" class="card-link">
+                        <x-card
+                            :product="$products[0]" />
+                    </a>
+                    <a href="{{ route('card', ['product' => $products[1]]) }}" class="card-link">
+                        <x-card
+                            :product="$products[1]" />
+                    </a>
                 </div>
                 <div class="cards-down">
-                <a href="{{ route('card', ['product' => $products[2]]) }}" class="card-link">
-                    <x-card 
-                        :product="$products[2]"
-                    />
-                </a>
-                <a href="{{ route('card', ['product' => $products[3]]) }}" class="card-link">
-                    <x-card 
-                        :product="$products[3]"
-                    />
-                </a>
+                    <a href="{{ route('card', ['product' => $products[2]]) }}" class="card-link">
+                        <x-card
+                            :product="$products[2]" />
+                    </a>
+                    <a href="{{ route('card', ['product' => $products[3]]) }}" class="card-link">
+                        <x-card
+                            :product="$products[3]" />
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 </x-main-layout>
+
+<script>
+    const btnChange = document.getElementById('cards-change');
+
+    btnChange.addEventListener('click', (e) => {
+        e.preventDefault();
+
+
+
+        fetch('/products/change', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                const container = document.querySelector('.block-cards-right');
+                container.innerHTML = `<div class="cards-up">
+                    <a href="/products/${data.products[0].slug}" class="card-link">
+                        <div class="card">
+                            <div class="rating">
+                                <span>${data.products[0].rating}</span>
+                                <img class="star" src="/img/icons/star.svg">
+                            </div>
+                            <div class="edit">
+                                <img src="/img/icons/edit.svg">
+                            </div>   
+                            <img class="card-image" src="storage/${data.products[0].path_img}" width="300px" height="294px"> 
+                            <div class="description">
+                                <p class="title">${data.products[0].name}</p>
+                                <p class="price">${data.products[0].price} ₽</p>
+                            </div>
+                            <div class="card-button">
+                                Купить  
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/products/${data.products[1].slug}" class="card-link">
+                    <div class="card">
+                            <div class="rating">
+                                <span>${data.products[1].rating}</span>
+                                <img class="star" src="/img/icons/star.svg">
+                            </div>
+                            <div class="edit">
+                                <img src="/img/icons/edit.svg">
+                            </div>   
+                            <img class="card-image" src="storage/${data.products[1].path_img}" width="300px" height="294px"> 
+                            <div class="description">
+                                <p class="title">${data.products[1].name}</p>
+                                <p class="price">${data.products[1].price} ₽</p>
+                            </div>
+                            <div class="card-button">
+                                Купить  
+                            </div>
+                        </div>
+                    </a>
+                    
+                    </div>
+                    <div class="cards-down">
+                    <a href="/products/${data.products[2].slug}" class="card-link">
+                    <div class="card">
+                            <div class="rating">
+                                <span>${data.products[2].rating}</span>
+                                <img class="star" src="/img/icons/star.svg">
+                            </div>
+                            <div class="edit">
+                                <img src="/img/icons/edit.svg">
+                            </div>   
+                            <img class="card-image" src="storage/${data.products[2].path_img}" width="300px" height="294px"> 
+                            <div class="description">
+                                <p class="title">${data.products[2].name}</p>
+                                <p class="price">${data.products[2].price} ₽</p>
+                            </div>
+                            <div class="card-button">
+                                Купить  
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/products/${data.products[3].slug}" class="card-link">
+                    <div class="card">
+                            <div class="rating">
+                                <span>${data.products[3].rating}</span>
+                                <img class="star" src="/img/icons/star.svg">
+                            </div>
+                            <div class="edit">
+                                <img src="/img/icons/edit.svg">
+                            </div>   
+                            <img class="card-image" src="storage/${data.products[0].path_img}" width="300px" height="294px"> 
+                            <div class="description">
+                                <p class="title">${data.products[3].name}</p>
+                                <p class="price">${data.products[3].price} ₽</p>
+                            </div>
+                            <div class="card-button">
+                                Купить  
+                            </div>
+                        </div>
+                    </a>
+                    </div>`
+            })
+            .catch(error => console.error('Error:', error));
+    })
+</script>

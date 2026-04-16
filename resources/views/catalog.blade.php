@@ -2,7 +2,7 @@
     @vite('resources/css/balls.css')
     @vite('resources/css/cards.css')
     @vite('resources/css/overlay.css')
-    @vite('app/Models/Product.php')
+
 @endpush
 
 <x-main-layout title="{{$category->name ?? 'Новая коллекция'}}" keywords="{{ $category->keywords ?? 'Челбаскет, футболки, майки, мячи, кофты, сувениры' }}" description="{{$category->meta_description ?? 'Новая коллекция' }}" >

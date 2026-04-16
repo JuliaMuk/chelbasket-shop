@@ -9,7 +9,11 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     public function home(){
-        $products = Product::inRandomOrder()->take(4)->get();
+        $products = Product::inRandomOrder()
+        ->whereNotNull('path_img')
+        ->where('stock_quantity','>',0)
+        ->take(4)
+        ->get();
         return view('index', compact('products'));
     }
     public function categories(){
@@ -28,4 +32,15 @@ class ProductController extends Controller
     public function show(Product $product){
         return view('card', compact('product'));
     }    
+    public function change(){
+        $products = Product::inRandomOrder()
+        ->whereNotNull('path_img')
+        ->where('stock_quantity','>',0)
+        ->take(4)
+        ->get();
+
+        return response()->json([
+            'products' => $products
+        ]);
+    }
 }

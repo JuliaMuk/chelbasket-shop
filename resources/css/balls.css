@@ -8,12 +8,12 @@
 .width{
     max-width: 1500px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 40px;
 }
 
 .cards{
     display: flex;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
     max-width: 1500px;
     width: 100%;
@@ -33,6 +33,20 @@
   text-transform: uppercase;
   font-family: "PaluiSPDemo", sans-serif;
   color: #fbfbfb;
+}
+
+@media (max-width: 768px) {
+  .title-catalog {
+    font-size: 48px;
+    margin: 30px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .title-catalog {
+    font-size: 32px;
+    margin: 20px 0;
+  }
 }
 
 .filters {

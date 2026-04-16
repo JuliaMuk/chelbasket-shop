@@ -89,8 +89,10 @@ class ProductResource extends Resource
                     ->maxFiles(20),
                 Forms\Components\KeyValue::make('characteristics')
                     ->label('Размеры')
+                    ->reorderable()
                     ->keyLabel('Название')
                     ->valueLabel('Значение'),
+                    
             ]);
     }
 

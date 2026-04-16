@@ -83,7 +83,7 @@
             <h1 class="product-title">{{ $product->name }}</h1>
             <div class="product-rating">
               <span class="star-rating">{{ str_repeat('★', round($product->rating)) . str_repeat('☆', 5 - round($product->rating)) }}</span>
-              <span class="rating-count">(5 отзывов)</span>
+      
             </div>
           </div>
 

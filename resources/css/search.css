@@ -1,0 +1,174 @@
+@import "fonts.css";
+
+.search-page {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 180px;
+    padding-bottom: 200px;
+    min-height: 100vh;
+}
+
+.title-catalog {
+    font-size: 65px;
+    margin: 80px 0;
+    font-weight: normal;
+    text-transform: uppercase;
+    font-family: "PaluiSPDemo", sans-serif;
+    color: #FFF;
+    text-align: center;
+}
+
+.search-results {
+    width: 90%;
+    max-width: 1344px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 0 20px;
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease;
+    display: block;
+}
+
+.card-link:hover {
+    transform: translateY(-8px);
+}
+
+.card-link:hover .product-card {
+    box-shadow: 0 12px 24px rgba(243, 146, 0, 0.3);
+}
+
+.search-not-found {
+    text-align: center;
+    padding: 100px 20px;
+    color: #FFF;
+    font-family: 'VisbyBold', sans-serif;
+    font-size: 24px;
+}
+
+.search-not-found p {
+    margin: 0;
+    opacity: 0.8;
+}
+  .card-button {
+  display: block;
+  width: 100%;
+  background-color: #F39200;
+  color: white;
+  text-align: center;
+  font-weight: 700;
+  font-size: 20px;
+  padding-top: 20px;
+  height: 40px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'PaluiSPDemo', sans-serif;
+  transition: background-color 0.3s;
+}
+.card-button:hover {
+  cursor: pointer;
+  background-color: #F35D00;
+}
+    .card-image{
+        object-fit: cover;
+        object-position: center;
+        max-width: 100%;
+        height: 200px;
+        margin: 0;
+        transition: all 0.2s;
+    }
+
+    .card {
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+        padding: 15px 15px;
+
+        font-family: "VisbyBold", sans-serif;
+        text-transform: capitalize;
+
+        width: 230px;
+    }
+  .card-link{
+    text-decoration: none ;
+  }
+/* Product card styles (if not defined elsewhere) */
+.product-card {
+    background: #FFF;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.product-card:hover {
+    box-shadow: 0 12px 24px rgba(243, 146, 0, 0.3);
+}
+.card-button-none {
+  display: block;
+  width: 100%;
+  background: #ffffff;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  font-weight: 700;
+  font-size: 20px;
+  padding: 10px 0;
+  margin-top: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  font-family: 'PaluiSPDemo', sans-serif;
+}
+.card-button-none:hover {
+  cursor:default;
+  background-color: #ffffff;
+}
+@media (max-width: 1024px) {
+    .title-catalog {
+        font-size: 50px;
+        margin: 60px 0;
+    }
+
+    .search-results {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .title-catalog {
+        font-size: 40px;
+        margin: 40px 0;
+    }
+
+    .search-results {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title-catalog {
+        font-size: 32px;
+        margin: 30px 0;
+    }
+
+    .search-results {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 0 10px;
+    }
+
+    .search-not-found {
+        font-size: 20px;
+        padding: 60px 20px;
+    }
+}

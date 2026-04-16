@@ -5,12 +5,17 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\OrderResource\Pages;
 use App\Filament\Resources\OrderResource\RelationManagers;
 use App\Models\Order;
+use App\Models\OrderItem;
+use App\Models\Product;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class OrderResource extends Resource
@@ -18,11 +23,11 @@ class OrderResource extends Resource
     protected static ?string $model = Order::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
-    
+
     protected static ?string $navigationLabel = 'Заказы';
-    
+
     protected static ?string $modelLabel = 'заказ';
-    
+
     protected static ?string $pluralModelLabel = 'Заказы';
 
     public static function form(Form $form): Form
@@ -49,6 +54,7 @@ class OrderResource extends Resource
                 Forms\Components\TextInput::make('phone')
                     ->label('Телефон')
                     ->tel()
+                    ->telRegex('/^(8|\+7) \(\d{3}\) \d{3}-\d{2}-\d{2}$/')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('city')
@@ -84,20 +90,47 @@ class OrderResource extends Resource
                         Forms\Components\Select::make('product_id')
                             ->label('Товар')
                             ->relationship('product', 'name')
-                            ->required(),
+                            ->required()
+                            ->searchable()
+                            ->live() 
+                            ->afterStateUpdated(function (Set $set, Get $get, $state, ?OrderItem $record) {
+                                $product = Product::find($state);
+                                $quantity = $get('quantity'); 
+                                $set('product_name', $product?->name);
+                                $set('item_price', $product?->price *  $quantity );
+                                if (!$record) {
+                                    return;
+                                }
+                                $record->update([
+                                    'item_price' => $product?->price *  $state,
+                                ]);
+                            }),
                         Forms\Components\TextInput::make('product_name')
                             ->label('Название товара')
+              
                             ->required(),
                         Forms\Components\TextInput::make('quantity')
                             ->label('Количество')
                             ->numeric()
                             ->required()
-                            ->default(1),
+                            ->default(1)
+                            ->live() 
+                            ->afterStateUpdated(function (Set $set, Get $get, ?int $state, ?OrderItem $record) {
+                                $id = $get('product_id'); 
+                                $product = Product::find($id); 
+                                $set('item_price', $product?->price *  $state );
+                                if (!$record) {
+                                    return;
+                                }
+                                $record->update([
+                                    'item_price' => $product?->price *  $state,
+                                ]);
+                            }),
                         Forms\Components\TextInput::make('characteristic_value')
                             ->label('Характеристика'),
                         Forms\Components\TextInput::make('item_price')
                             ->label('Цена позиции')
-                            ->numeric()
+                            ->numeric()                        
                             ->prefix('₽')
                             ->required(),
                     ])
@@ -129,13 +162,13 @@ class OrderResource extends Resource
                 Tables\Columns\TextColumn::make('status')
                     ->label('Статус')
                     ->badge()
-                    ->color(fn (string $state): string => match ($state) {
+                    ->color(fn(string $state): string => match ($state) {
                         'new' => 'warning',
                         'in_progress' => 'primary',
                         'completed' => 'success',
                         'cancelled' => 'danger',
                     })
-                    ->formatStateUsing(fn (string $state): string => match ($state) {
+                    ->formatStateUsing(fn(string $state): string => match ($state) {
                         'new' => 'Новый',
                         'in_progress' => 'В работе',
                         'completed' => 'Выполнен',
@@ -152,6 +185,7 @@ class OrderResource extends Resource
                         'cancelled' => 'Отменён',
                     ]),
             ])
+            ->defaultSort('created_at', 'desc')
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),

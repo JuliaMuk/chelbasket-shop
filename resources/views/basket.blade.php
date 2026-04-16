@@ -10,8 +10,11 @@
         <div class="main-container">
             <div class="headline">КОРЗИНА</div>
             @if (!$orderItems)
-            <p>Корзина пуста</p>
-            <a href="{{route('categories')}}">Выберите товары</a>
+            <div class="empty-basket">
+                <p class="empty-basket-title">Корзина пуста</p>
+                <p class="empty-basket-text">Добавьте товары из каталога, чтобы оформить заказ</p>
+                <a href="{{route('categories')}}" class="btn-go-to-catalog">Перейти в каталог</a>
+            </div>
             @else
 
             <div class="basket">

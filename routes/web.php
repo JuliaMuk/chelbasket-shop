@@ -20,7 +20,9 @@ Route::get('/', [ProductController::class,'home'])->name('home');
 
 Route::get('/categories', [ProductController::class,'categories'])->name('categories');
 Route::get('/catalog/{category}', [ProductController::class,'catalog'])->name('catalog');
+Route::get('/products/change',[ProductController::class,'change'])->name('change');
 Route::get('/products/{product:slug}',[ProductController::class,'show'])->name('card');
+
 Route::post('/order/add-item',[OrderController::class,'addItem'])->name('order.add-item');
 Route::get('/basket', [OrderController::class, 'show'])->name('basket');
 Route::delete('/order/item', [OrderController::class, 'removeItem'])->name('order.remove-item');
@@ -31,39 +33,44 @@ Route::post('/order/create', [OrderController::class,'create'])->name('order.cre
 Route::post('/search',[SearchController::class,'index'])->name('search');
 Route::post('/subscribe',[UserController::class,'subscribe'])->name('subscribe');
 
-Route::get('/registration', function () {
-    return view('registration');
-})->middleware('guest')->name('registration');
-
-Route::get('/autorisation', function () {
-    return view('autorisation');
-})->middleware('guest')->name('autorisation');
 
 
+// Route::get('/registration', function () {
+//     return view('registration');
+// })->middleware('guest')->name('registration');
 
-Route::get('/user', function () {
-    return view('user');
-})->name('user');
-
-
-Route::get('/form', function () {
-    $products = Product::all();
-    return view('form', compact('products'));
-})->name('form');
-
-Route::get('/history', function () {
-    return view('history');
-})->name('history');
+// Route::get('/autorisation', function () {
+//     return view('autorisation');
+// })->middleware('guest')->name('autorisation');
 
 
 
-
-Route::get('/clean-session', function(){
-    session()->flush();
-    return redirect()->back();
-});
+// Route::get('/user', function () {
+//     return view('user');
+// })->name('user');
 
 
+// Route::get('/form', function () {
+//     $products = Product::all();
+//     return view('form', compact('products'));
+// })->name('form');
+
+// Route::get('/history', function () {
+//     return view('history');
+// })->name('history');
+
+
+
+
+// Route::get('/clean-session', function(){
+//     session()->flush();
+//     return redirect()->back();
+// });
+
+// Route::get('/linkstorage', function () {
+//     Artisan::call('storage:link');
+//     return 'Link created';
+// });
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

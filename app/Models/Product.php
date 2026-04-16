@@ -2,11 +2,15 @@
 
 namespace App\Models;
 
+
+use Illuminate\Database\Eloquent\Casts\AsArrayObject;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+
 class Product extends Model
 {
     protected $fillable = [
@@ -28,7 +32,7 @@ class Product extends Model
     ];
 
     protected $casts = [
-        'characteristics' => 'array',
+        // 'characteristics' => 'array',
         'price' => 'decimal:2',
         'sale_price' => 'decimal:2',
         'is_new' => 'boolean',
@@ -36,6 +40,14 @@ class Product extends Model
         'extra_images' => 'array'
     ];
 
+    public function characteristics(): Attribute
+    {
+
+        return Attribute::make(
+            get: fn($value) => json_decode($value, true),
+            set: fn($value) => json_encode($value), 
+        );
+    }
 
     public function category(): BelongsTo
     {
@@ -87,7 +99,7 @@ class Product extends Model
         $suffix = 2;
 
         while (static::query()
-            ->when($ignoreId, fn ($query) => $query->where('id', '!=', $ignoreId))
+            ->when($ignoreId, fn($query) => $query->where('id', '!=', $ignoreId))
             ->where('slug', $slug)
             ->exists()
         ) {
@@ -97,4 +109,6 @@ class Product extends Model
 
         return $slug;
     }
+
+    
 }
